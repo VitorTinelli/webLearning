@@ -1,0 +1,45 @@
+body{
+    margin: auto;
+    background-image: url(ft_fundo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#cabeca{
+    width: 100%;
+    height: 100;
+    background-color: transparent;
+    font-size: 30;
+    color: black;
+    word-spacing: 50;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 10;   
+    
+}
+
+#rodape{
+    width: 100%;
+    height: 50;
+    background-color: transparent;
+    text-align: center;
+    font-size: 15;
+    color: green;
+    border-spacing: 20;
+    padding-top: 17.5;
+}
+
+#inicio{
+    width: 100%;
+    height: 600;
+    font-size: 50;
+    background-size: 100%;
+    text-align: center;
+    background-position: top;
+}
+
+
+a:link , a:visited, a:hover, a:active {
+    color: black;
+    text-decoration: none;
+  }

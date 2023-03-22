@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Hotel Fazenda</title>
+        <link rel="shortcut icon" href="logoHotelFazenda.png" type="image/x-icon" />
+        <link rel="stylesheet" type= "text/css" href="style2.css">
+    </head>
+
+    <body>
+        <div id="cabeca">
+            <img src="logoHotelFazenda.png" width="140" height="70">
+            <a href="home.html"> HISTÓRICO </a>
+            <a href="ambientes.html"> AMBIENTES </a>
+            <a href="atividades.html"> ATIVIDADES </a>
+            <a href="reservas.html"> RESERVAS </a>
+        </div>
+
+        
+        <form action="reservas.php" method="post">
+            <div id="forms" >
+                <fieldset>
+                    <legend>DADOS DO HOSPEDE:</legend>
+                    <label for="nome">Nome: </label>
+                    <input type="text" id="nome" name="nome" style="width: 15em" value="">
+                    <br>
+                    <label for="end">Endereço: </label>
+                    <input type="text" id="end" name="end" style="width: 15em" value="">
+                    <br>
+                    <label for="bairro">Bairro: </label>
+                    <input type="text" id="bairro" name="bairro" style="width: 15em" value="">
+                    <br>
+                    <label for="cid">Cidade: </label>
+                    <input type="text" id="cid" name="cid" style="width: 15em" value="">
+                    <br>
+
+                    <label for="cpf">CPF : </label>
+                    <input type="text" id="cpf" name="cpf" style="width: 15em" value="">
+                    <br>
+                    <label for="cep">CEP: </label>
+                    <input type="text" id="cep" name="cep" style="width: 15em" value="">
+                    <br>
+
+                    <label for="est">Estado:</label>
+                    <select name="est" id="est" style="height: 22; width: 15em;" >
+                        <option value="">--</option>
+                        <option value="PR">Paraná</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                    </select>
+                    <br>
+                    <label for="pais">País:</label>
+                    <select name="pais" id="pais" style="height: 22; width: 15em;" >
+                        <option value="">--</option>
+                        <option value="BRA">Brasil</option>
+                        <option value="ARG">Argentina</option>
+                        <option value="URG">Uruguai</option>
+                        <option value="PAR">Paraguai</option>
+                    </select>
+                    <br>
+
+                    <label for="tel">Telefone : </label>
+                    <input type="text" id="tel" name="tel" style="width: 15em" value="">
+                    <br>
+                    <label for="cel">Celular: </label>
+                    <input type="text" id="cel" name="cel" style="width: 15em" value="">
+                    <br>
+
+                    <label for="sex">Sexo:</label>
+                    <select name="sex" id="sex" style="height: 22;">
+                        <option value="">--</option>
+                        <option value="MASC">Masculino</option>
+                        <option value="FEM">Feminino</option>
+                        <option value="C46">Bimotor Curtiss C-46</option>
+                    </select>
+                    <br>
+                    <label for="dnas">Data de Nascimento: </label>
+                    <input type="date" id="dnas" name="dnas" style="width: 15em" value="">
+                    <br><br>
+                </fieldset>
+
+                <fieldset>
+                    <legend>DADOS DA HOSPEDAGEM:</legend>
+
+                    <label for="dchein">Data Check-in:</label>
+                    <input type="date" id="dchein" name="dchein"style="width: 100" value="">
+                    <label for="hchein">Hora Check-in: </label>
+                    <input type="time" id="hchein" name="hchein"style="width: 100" value="">
+                    <br>
+                    <label for="dcheou">Data Check-out:</label>
+                    <input type="date" id="dcheou" name="dcheou"style="width: 100" value="">
+                    <label for="hcheou">Hora Check-out: </label>
+                    <input type="time" id="hcheou" name="hcheou"style="width: 100" value="">
+                    <br>
+
+                    Tipo de quarto: 
+                        <input type="radio" name="tipquart" value="tipquart" id="tipquart">
+                        <label for="ind">Individual</label>
+                    
+                        <input type="radio" name="tipquart" value="tipquart" id="tipquart" checked> 
+                        <label for="dup">Duplo</label>
+                    
+                        <input type="radio" name="tipquart" value="tipquart" id="tipquart"> 
+                        <label for="tri" >Triplo</label>
+                    <br>
+
+                    <label for="nadult">N° Adultos:</label>
+                    <select name="nadult" id="nadult" style="height: 22; width: 100;" >
+                        <option value="">--</option>
+                        <option value="A1">Um adulto</option>
+                        <option value="A2">Dois adultos</option>
+                        <option value="A3">Três Adultos</option>
+                    </select>
+                    <label for="ncria">N° Crianças:</label>
+                    <select name="ncria" id="ncria" style="height: 22; width: 100;" >
+                        <option value="">--</option>
+                        <option value="A1">Uma Criança</option>
+                        <option value="A2">Duas Crianças</option>
+                        <option value="A3">Três Crianças</option>
+                    </select>
+                    <br>
+                    Serviços:
+                    <input type="checkbox" id="cafe" name="servicos" value="cafe">
+                    <label for="Cafe">Café da manhã</label>
+                    <input type="checkbox" id="almoco" name="servicos" value="almoco" checked>
+                    <label for="almoço">Almoço</label>
+                    <input type="checkbox" id="janta" name="servicos" value="janta">
+                    <label for="Janta">Janta</label>
+                    <br><br>
+                    <button type="submit" class="bt_submit">Enviar</button>
+                    <button type="reset" class="bt_limpar">Limpar</button>
+                </fieldset>
+            
+        </form> 
+
+
+        <div id="Rodape">
+            Developer: Vitor Tinelli | | Copyright© 2023 All rights reserved <br>
+            Contact me: 
+            <a href = "https://github.com/VitorTinelli" style="color: black">
+            <b>Github</b>
+            </a>
+            ||
+            <a href = "https://www.instagram.com/vitortinelli/" style="color: black">
+            <b>Instagram</b>
+            </a>
+        </div>
+
+    </body>
+</html>

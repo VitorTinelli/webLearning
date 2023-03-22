@@ -1,0 +1,37 @@
+<html>
+    <!-- Head -->
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Cadastro Marcas</title>
+        <link rel="stylesheet" type= "text/css" href="style.css">
+    </head>
+
+
+    <body>
+        <div>
+        <form name="formulario" method="post" action="cadastroMarcas.php">
+            <div id="form">
+
+                <h2> Cadastro das Marcas Revenda de Carros</h2>
+                <div class="input-forms">
+                <!-- Text inputs -->
+                <input required type="text" name="codigo" id="codigo" size=20 class="input">
+                <label for="codigo">Código: </label>
+                </div>
+
+                <div class="input-forms">
+                <input required type="text" name="nome" id="nome" size=20 class="input">
+                <label for="nome">Nome: </label>
+                </div>
+
+                <!-- Botões -->
+                <input type="submit" name="gravar" id="gravar" value="Enviar">
+                <input type="submit" name="alterar" id="alterar" value="Alterar">
+                <input type="submit" name="excluir" id="excluir" value="Excluir">
+                <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar">
+            </div>
+        </div> 
+
+        </form>
+    </body>
+</html>
