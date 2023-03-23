@@ -40,7 +40,7 @@ $pesquisar_cor = mysql_query($sql_cor);
                 <nav>
                   <ul>
                     <li><a href="home.php">Home</a></li>
-                    <li><a href="#">Contato </a></li>
+                    <li><a href="contato.php">Contato </a></li>
                   </ul>
                 </nav>
               </header>
@@ -235,7 +235,7 @@ $pesquisar_cor = mysql_query($sql_cor);
 
     </div>
 
-    
+
   </main>
  </body>
 </html>
