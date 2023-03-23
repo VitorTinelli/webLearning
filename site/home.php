@@ -5,9 +5,6 @@ $servidor = mysql_connect('localhost','root','') ;
 //conectar com o banco: revenda
 $banco = mysql_select_db('revenda');
 
-$sql_marcas = "Select * from marcas";
-$pesquisar_marcas = mysql_query($sql_marcas);
-
 $sql_modelos = "Select * from modelos";
 $pesquisar_modelos = mysql_query($sql_modelos);
 
@@ -16,6 +13,13 @@ $pesquisar_categorias = mysql_query($sql_categorias);
 
 $sql_automoveis = "Select * from automoveis";
 $pesquisar_automoveis = mysql_query($sql_automoveis);
+
+$sql_ano = "select distinct ano from automoveis";
+$pesquisar_ano = mysql_query($sql_ano);
+
+$sql_cor = "select distinct cor from automoveis";
+$pesquisar_cor = mysql_query($sql_cor);
+
 
 ?>
 
@@ -45,7 +49,7 @@ $pesquisar_automoveis = mysql_query($sql_automoveis);
               <main class="content">
 
                 <form name="formulario" method="post" action="home.php">
-                
+
                     <div class="select">
                     <select name="codmodelo" id="codmodelo">
                     <option value = "0" selected disabled>Selecione o modelo:</option>
@@ -59,7 +63,7 @@ $pesquisar_automoveis = mysql_query($sql_automoveis);
                         }
                         ?>
                         <button>
-                        <input type="submit" name="pesquisarModelo" id="pesquisar" value="Pesquisar">
+                        <input type="submit" name="pesquisarModelo" id="pesquisar" value="Pesquisar" class="butaoHome">
                         </button>
                     </div>
 
@@ -76,13 +80,49 @@ $pesquisar_automoveis = mysql_query($sql_automoveis);
                     }
                     ?>
                     <button>
-                        <input type="submit" name="pesquisarcategorias" id="pesquisar" value="Pesquisar">
+                        <input type="submit" name="pesquisarCategorias" id="pesquisar" value="Pesquisar" class="butaoHome">
                     </button>
                 </div>
-                </form>
+
+                <div class="select">
+                <select name="codano" id="codano">
+                <option value = "0" selected disabled>Selecione o ano:</option>
+                <?php
+                if  (mysql_num_rows($pesquisar_ano) <> 0 ){
+                    while($automoveis = mysql_fetch_array($pesquisar_ano)){
+                        echo '<option value="'.$automoveis['ano'].'">'.
+                                               $automoveis['ano'].'</option>';
+                        }
+                        echo '</select>';
+                    }
+                        ?>
+                    <button>
+                        <input type="submit" name="pesquisarAno" id="pesquisar" value="Pesquisar" class="butaoHome">
+                    </button>
+                </div>
+
+                <div class="select">
+                <select name="codcor" id="codcor">
+                <option value = "0" selected disabled>Selecione a cor:</option>
+                <?php
+                if  (mysql_num_rows($pesquisar_cor) <> 0 ){
+                    while($automoveis = mysql_fetch_array($pesquisar_cor)){
+                        echo '<option value="'.$automoveis['cor'].'">'.
+                                               $automoveis['cor'].'</option>';
+                        }
+                        echo '</select>';
+                    }
+                        ?>
+                    <button>
+                        <input type="submit" name="pesquisarCor" id="pesquisar" value="Pesquisar" class="butaoHome">
+                    </button>
+                </div>
+
+            </form>
 
                 <div>
                     <?php
+
                                 //pesquisar modelos
                                 if (isset($_POST['pesquisarModelo']))
                                 {
@@ -97,20 +137,22 @@ $pesquisar_automoveis = mysql_query($sql_automoveis);
                                         echo "Sua pesquisa não retornou resultados "; 		
                                         }
                                     else {
-                                        echo "Resultado da Pesquisa por automoveis "."<br>";
+                                        echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
                                         while($automoveis = mysql_fetch_array($resultado))
                                             {
-                                                echo"Descricao: ".$automoveis['descricao']."<br>".
+                                                echo"<div class = 'resultados'> <div class = 'resultados_ind'>
+                                                    Descricao: ".$automoveis['descricao']."<br>".
                                                     "Valor: ".$automoveis['valor']."<br>".
                                                     "Ano: ".$automoveis['ano']."<br>".
-                                                    "Cor: ".$automoveis['cor'].'</option>';
+                                                    "Cor: ".$automoveis['cor'].'</option></div>';
 
                                             }
+                                            echo '</div>';
                                     }
                                 }
                             
                             //pesquisar Categorias
-                            if (isset($_POST['pesquisarcategorias']))
+                            if (isset($_POST['pesquisarCategorias']))
                             {
 
                             $codcategorias = $_POST['codcategorias'];
@@ -123,26 +165,77 @@ $pesquisar_automoveis = mysql_query($sql_automoveis);
                                     echo "Sua pesquisa não retornou resultados "; 		
                                     }
                                 else {
-                                    echo "Resultado da Pesquisa por automoveis "."<br>";
+                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
                                     while($automoveis = mysql_fetch_array($resultado))
                                         {
-                                            echo"Descricao: ".$automoveis['descricao']."<br>".
+                                            echo"<div class = 'resultados'> <div class = 'resultados_ind'>
+                                                Descricao: ".$automoveis['descricao']."<br>".
                                                 "Valor: ".$automoveis['valor']."<br>".
                                                 "Ano: ".$automoveis['ano']."<br>".
-                                                "Cor: ".$automoveis['cor'].'</option>';
+                                                "Cor: ".$automoveis['cor'].'</option></div>';
+                                        }
+                                        echo '</div>';
+                                }
+                            }
 
-			}
-    }
-}
-                    
-                    
-                    
-                 
-                    ?>
-                </div>
-              </main>
+                            //pesquisar Ano
+                            if (isset($_POST['pesquisarAno']))
+                            {
 
-        </body>
+                            $codano = $_POST['codano'];
+                            $sql = "select * from automoveis 
+                            where ano= '$codano'";
 
+                            $resultado = mysql_query($sql);
 
-    </html>
+                                if (mysql_num_rows($resultado) == 0){ 
+                                    echo "Sua pesquisa não retornou resultados "; 		
+                                    }
+                                else {
+                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                    while($automoveis = mysql_fetch_array($resultado))
+                                        {
+                                            echo"<div class = 'resultados'> <div class = 'resultados_ind'>
+                                                Descricao: ".$automoveis['descricao']."<br>".
+                                                "Valor: ".$automoveis['valor']."<br>".
+                                                "Ano: ".$automoveis['ano']."<br>".
+                                                "Cor: ".$automoveis['cor'].'</option></div>';
+                                        }
+                                        echo '</div>';
+                                    }
+                            }
+
+                            //pesquisar cor
+                            if (isset($_POST['pesquisarCor']))
+                            {
+
+                            $codcor = $_POST['codcor'];
+                            $sql = "select * from automoveis 
+                            where cor= '$codcor'";
+
+                            $resultado = mysql_query($sql);
+
+                                if (mysql_num_rows($resultado) == 0){ 
+                                    echo "Sua pesquisa não retornou resultados "; 		
+                                    }
+                                else {
+                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                    while($automoveis = mysql_fetch_array($resultado))
+                                        {
+                                            echo"<div class = 'resultados'> <div class = 'resultados_ind'>
+                                                Descricao: ".$automoveis['descricao']."<br>".
+                                                "Valor: ".$automoveis['valor']."<br>".
+                                                "Ano: ".$automoveis['ano']."<br>".
+                                                "Cor: ".$automoveis['cor'].'</option></div>';
+                                        }
+                                        echo '</div>';
+                                    }
+                            }
+        ?>
+
+    </div>
+
+    
+  </main>
+ </body>
+</html>

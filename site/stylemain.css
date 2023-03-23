@@ -2,7 +2,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #FFF;
     color: #333;
     width: 100%;
   }
@@ -20,8 +19,6 @@ nav a {
     color: #333;
     font-weight: bold;
   }
-
-
 
 select{
     appearance: none;
@@ -50,7 +47,6 @@ select::-ms-expand{
 }
 
 .select ::after{
-    content: '\25BC';
     position: absolute;
     top: 0;
     right: 0;
@@ -64,7 +60,41 @@ select::-ms-expand{
     
 }
 
-
 main{
-    padding-top: 20px;
+    padding-top: 40px;
 }
+
+button{
+  background-color: rgb(41, 41, 41);
+  border: 0!important;
+  background: transparent;
+  color: rgb(41, 41, 41);
+  cursor: pointer;
+  }
+
+.title{
+  font-size: 25;
+  margin-bottom: 20;
+}
+
+.resultados{
+  display: inline-flex;
+  margin-left: 10;
+  height: 100;
+}
+
+.resultados_ind{
+  display: inline-flex;
+  margin-right: 50;
+  
+}
+input{
+  background: transparent;
+  height: 100%;
+  margin:auto;
+  width: auto;
+}
+
+
+  
+
