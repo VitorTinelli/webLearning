@@ -29,7 +29,7 @@ $pesquisar_cor = mysql_query($sql_cor);
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type= "text/css" href="stylemain.css">
+            <link rel="stylesheet" type= "text/css" href="stylehome.css">
             <title>Revenda de Carros</title>
         </head>
 
@@ -40,7 +40,7 @@ $pesquisar_cor = mysql_query($sql_cor);
                 <nav>
                   <ul>
                     <li><a href="home.php">Home</a></li>
-                    <li><a href="contato.php">Contato </a></li>
+                    <li><a href="contato.html">Contato </a></li>
                   </ul>
                 </nav>
               </header>
@@ -137,11 +137,12 @@ $pesquisar_cor = mysql_query($sql_cor);
                                         echo "Sua pesquisa não retornou resultados "; 		
                                         }
                                     else {
-                                        echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                        echo "<div class = 'title'>Resultado da Pesquisa: </div>";
                                         while($automoveis = mysql_fetch_array($resultado))
                                             {
                                                 echo"<div class = 'resultados'> <div class = 'resultados_ind'>
-                                                    Descricao: ".$automoveis['descricao']."<br>".
+                                                    <img src='".$automoveis['foto1']."' alt='Logo da revenda de carros' width='150' height='75'>"."<br><br>".
+                                                    "Descricao: ".$automoveis['descricao']."<br>".
                                                     "Valor: ".$automoveis['valor']."<br>".
                                                     "Ano: ".$automoveis['ano']."<br>".
                                                     "Cor: ".$automoveis['cor'].'</option></div>';
@@ -165,11 +166,12 @@ $pesquisar_cor = mysql_query($sql_cor);
                                     echo "Sua pesquisa não retornou resultados "; 		
                                     }
                                 else {
-                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                    echo "<div class = 'title'>Resultado da Pesquisa: </div>";
                                     while($automoveis = mysql_fetch_array($resultado))
                                         {
                                             echo"<div class = 'resultados'> <div class = 'resultados_ind'>
-                                                Descricao: ".$automoveis['descricao']."<br>".
+                                                <img src='".$automoveis['foto1']."' alt='Logo da revenda de carros' width='150' height='75'>"."<br><br>".
+                                                "Descricao: ".$automoveis['descricao']."<br>".
                                                 "Valor: ".$automoveis['valor']."<br>".
                                                 "Ano: ".$automoveis['ano']."<br>".
                                                 "Cor: ".$automoveis['cor'].'</option></div>';
@@ -192,11 +194,12 @@ $pesquisar_cor = mysql_query($sql_cor);
                                     echo "Sua pesquisa não retornou resultados "; 		
                                     }
                                 else {
-                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                    echo "<div class = 'title'>Resultado da Pesquisa: </div>";
                                     while($automoveis = mysql_fetch_array($resultado))
                                         {
                                             echo"<div class = 'resultados'> <div class = 'resultados_ind'>
-                                                Descricao: ".$automoveis['descricao']."<br>".
+                                                <img src='".$automoveis['foto1']."' alt='Logo da revenda de carros' width='150' height='75'>"."<br><br>".
+                                                "Descricao: ".$automoveis['descricao']."<br>".
                                                 "Valor: ".$automoveis['valor']."<br>".
                                                 "Ano: ".$automoveis['ano']."<br>".
                                                 "Cor: ".$automoveis['cor'].'</option></div>';
@@ -219,11 +222,12 @@ $pesquisar_cor = mysql_query($sql_cor);
                                     echo "Sua pesquisa não retornou resultados "; 		
                                     }
                                 else {
-                                    echo "<div class = 'title'>Resultado da Pesquisa por automoveis </div>";
+                                    echo "<div class = 'title'>Resultado da Pesquisa: </div>";
                                     while($automoveis = mysql_fetch_array($resultado))
                                         {
                                             echo"<div class = 'resultados'> <div class = 'resultados_ind'>
-                                                Descricao: ".$automoveis['descricao']."<br>".
+                                                <img src='".$automoveis['foto1']."' alt='Logo da revenda de carros' width='150' height='75'>"."<br><br>".
+                                                "Descricao: ".$automoveis['descricao']."<br>".
                                                 "Valor: ".$automoveis['valor']."<br>".
                                                 "Ano: ".$automoveis['ano']."<br>".
                                                 "Cor: ".$automoveis['cor'].'</option></div>';
