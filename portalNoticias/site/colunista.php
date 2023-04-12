@@ -11,33 +11,33 @@ $banco = mysql_select_db('portal');
     <head>
         <meta charset="UTF-8"/>
         <title>Cadastro de Colunistas</title>
-        <link rel="stylesheet" type= "text/css" href="style1.css">
+        <link rel="stylesheet" type= "text/css" href="styles.css">
     </head>
 
 
     <body>
         <div>
-        <form name="formulario" method="post" action="regiao.php">
+        <form name="formulario" method="post" action="colunista.php">
             <div id="form">
                 <h2> Cadastro de colunistas</h2>
 
-                <div >
-                    <input type="text" name="nome" id="nome" size=20 
+                <div class="input-forms">
+                    <input required type="text" name="nome" id="nome" size=20 class="input">
                     <label for="nome">Nome: </label>
                 </div>
 
-                <div >
-                    <input type="text" name="email" id="email" size=20 
+                <div class="input-forms">
+                    <input required type="text" name="email" id="email" size=20 class="input"> 
                     <label for="email">Email: </label>
                 </div>
 
-                <div >
-                    <input type="text" name="user" id="user" size=20 
-                    <label for="user">Usuário: </label>
+                <div class="input-forms">
+                    <input required type="text" name="login" id="login" size=20 class="input">
+                    <label for="login">Usuário: </label>
                 </div>
 
-                <div >
-                    <input type="text" name="senha" id="senha" size=20 
+                <div class="input-forms">
+                    <input required type="text" name="senha" id="senha" size=20 class="input">
                     <label for="senha">Senha: </label>
                 </div>
 
@@ -45,10 +45,10 @@ $banco = mysql_select_db('portal');
 
                 <div>
                 <!-- Botões -->
-                <input type="submit" name="gravar" id="gravar" value="Enviar">
-                <input type="submit" name="alterar" id="alterar" value="Alterar">
-                <input type="submit" name="excluir" id="excluir" value="Excluir">
-                <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar">
+                <input type="submit" name="gravar" id="gravar" value="Enviar" class = "buttons">
+                <input type="submit" name="alterar" id="alterar" value="Alterar" class = "buttons">
+                <input type="submit" name="excluir" id="excluir" value="Excluir" class = "buttons">
+                <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar" class = "buttons">
 
                 </div>
                 </div> 
@@ -57,13 +57,15 @@ $banco = mysql_select_db('portal');
                     //Se clicar no botão gravar
                     if (isset($_POST['gravar'])){
                         //receber as variaveis do HTML:
-                        $codigo = $_POST['codigo'];
                         $nome   = $_POST['nome'];
+                        $email  = $_POST['email'];
+                        $login  = $_POST['login'];
+                        $senha  = $_POST['senha'];
 
                         //comando do SQL (INSERT):
-                        $sql = "insert into regiao (codigo, nome) 
-                                values ('$codigo', '$nome')";
-
+                        $sql = "insert into colunistas (nome, email, login, senha) 
+                                values ('$nome', '$email', '$login', '$senha')";
+                                
                         //validar o comando no banco de dados:
                         $resultado = mysql_query($sql);
 
@@ -79,12 +81,14 @@ $banco = mysql_select_db('portal');
                     //Se clicar no botão alterar
                     if (isset($_POST['alterar'])){
 
-                        $codigo = $_POST['codigo'];
                         $nome   = $_POST['nome'];
+                        $email  = $_POST['email'];
+                        $login  = $_POST['login'];
+                        $senha  = $_POST['senha'];
 
                         //
-                        $sql = "update regiao set nome = '$nome' 
-                                where codigo = '$codigo'";
+                        $sql = "update colunistas set senha = '$senha' 
+                                where email = '$email'";
 
                         $resultado = mysql_query($sql);
                         if ($resultado){
@@ -97,11 +101,14 @@ $banco = mysql_select_db('portal');
 
                     //Se clicar no botão excluir
                     if (isset($_POST['excluir'])){
-                        $codigo = $_POST['codigo'];
-                        $nome   = $_POST['nome'];
 
-                        $sql = "delete from regiao
-                                where codigo = '$codigo' or nome = '$nome'";
+                        $nome   = $_POST['nome'];
+                        $email  = $_POST['email'];
+                        $login  = $_POST['login'];
+                        $senha  = $_POST['senha'];
+
+                        $sql = "delete from colunistas
+                                where email = '$email' or login = '$login'";
 
                         $resultado = mysql_query($sql);
                         if ($resultado){
@@ -113,8 +120,11 @@ $banco = mysql_select_db('portal');
                     }
 
                     if (isset($_POST['pesquisar'])){
-                        $codigo = $_POST['codigo'];
+                       
                         $nome   = $_POST['nome'];
+                        $email  = $_POST['email'];
+                        $login  = $_POST['login'];
+                        $senha  = $_POST['senha'];
 
                         $sql = "select * from regiao";
 
@@ -124,10 +134,10 @@ $banco = mysql_select_db('portal');
                             echo "Desculpe, sua pesquisa não encontrou resultados.";
                         }
                         else{
-                            echo "Resultado da pesquisa por regiao:"."<br><br>";
-                            while ($regiao = mysql_fetch_array($resultado)){
-                                echo "Codigo: ".$regiao['codigo']."<br>";
-                                echo "Nome: ".$regiao ['nome']."<br><br>";
+                            echo "Resultado da pesquisa por colunistas:"."<br><br>";
+                            while ($colunistas = mysql_fetch_array($resultado)){
+                                echo "Codigo: ".$colunistas['codigo']."<br>";
+                                echo "Nome: ".$colunistas ['nome']."<br><br>";
                             }
                         }
                     }

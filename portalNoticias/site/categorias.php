@@ -13,7 +13,7 @@ $banco = mysql_select_db('portal');
     <head>
         <meta charset="UTF-8"/>
         <title>Cadastro das categorias</title>
-        <link rel="stylesheet" type= "text/css" href="style1.css">
+        <link rel="stylesheet" type= "text/css" href="styles.css">
     </head>
 
 
