@@ -6,8 +6,8 @@ $banco    = mysql_select_db('portal');
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <title>Cadastro de Matérias</title>
-        <link rel="stylesheet" type= "text/css" href="styles.css">
+        <title>Login</title>
+        <link rel="stylesheet" type= "text/css" href="css/styles.css">
         <html lang="pt-br">
     </head>
 

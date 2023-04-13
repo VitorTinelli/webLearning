@@ -20,7 +20,7 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
     <head>
         <meta charset="UTF-8"/>
         <title>Cadastro de Matérias</title>
-        <link rel="stylesheet" type= "text/css" href="styles.css">
+        <link rel="stylesheet" type= "text/css" href="css/styles.css">
         <html lang="pt-br">
     </head>
 
@@ -133,7 +133,7 @@ if (isset($_POST['gravar'])){
     $foto1 = $_FILES['foto1']; // campos fotos
     $foto2 = $_FILES['foto2']; // campos fotos
     $foto3 = $_FILES['foto3']; // campos fotos
-
+    
     $error = 0;
     $error2 = 0;
     $error3 = 0;
