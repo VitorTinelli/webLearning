@@ -108,7 +108,7 @@ $banco = mysql_select_db('portal');
                         $senha  = $_POST['senha'];
 
                         $sql = "delete from colunistas
-                                where email = '$email' or login = '$login'";
+                                where email = '$email' and senha = '$senha'";
 
                         $resultado = mysql_query($sql);
                         if ($resultado){
@@ -126,7 +126,7 @@ $banco = mysql_select_db('portal');
                         $login  = $_POST['login'];
                         $senha  = $_POST['senha'];
 
-                        $sql = "select * from regiao";
+                        $sql = "select * from colunistas";
 
                         $resultado = mysql_query($sql);
 
@@ -137,6 +137,7 @@ $banco = mysql_select_db('portal');
                             echo "Resultado da pesquisa por colunistas:"."<br><br>";
                             while ($colunistas = mysql_fetch_array($resultado)){
                                 echo "Codigo: ".$colunistas['codigo']."<br>";
+                                echo "Email: ".$colunistas['email']."<br>";
                                 echo "Nome: ".$colunistas ['nome']."<br><br>";
                             }
                         }

@@ -21,12 +21,13 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
         <meta charset="UTF-8"/>
         <title>Cadastro de Matérias</title>
         <link rel="stylesheet" type= "text/css" href="styles.css">
+        <html lang="pt-br">
     </head>
 
 
     <body>
-        <div>
-        <form name="formulario" method="post" action="materias.php" enctype="multipart/form-data>
+    <div>
+        <form name="formulario" method="post" action="materias.php" enctype="multipart/form-data">
             <div id="form">
                 <h2> Cadastro de Matérias</h2>
 
@@ -50,7 +51,7 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
                 </div>
 
                 <div class="select">
-                <select name="codcategoria" id="codcategoria">
+                <select name="codcat" id="codcat">
                 <option value = "0" selected disabled>Selecione a categoria</option>
                     <?php
                     if (mysql_num_rows($pesquisar_categorias) <> 0){
@@ -78,29 +79,29 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
                 </div>
 
                 <div class="input-forms">
-                    <input required type="text" name="nome" id="nome" size=20 class="input">
-                    <label for="nome">Chamada: </label>
+                    <input required type="text" name="chamada" id="chamada" size=20 class="input">
+                    <label for="chamada">Chamada: </label>
                 </div>
 
                 <div class="input-forms">
-                    <input required type="text" name="email" id="email" size=20 class="input"> 
-                    <label for="email">Resumo: </label>
+                    <input required type="text" name="resumo" id="resumo" size=20 class="input"> 
+                    <label for="resumo">Resumo: </label>
                 </div>
 
                 <div class="input-forms">
-                    <input required type="text" name="login" id="login" size=20 class="input">
-                    <label for="login">Matéria: </label>
+                    <input required type="text" name="materia" id="materia" size=20 class="input">
+                    <label for="materia">Matéria: </label>
                 </div>
                 
                 <br><br>
-                Foto 01:
-                <input type="file" name="fotoC" id="fotoC" size="50">    <!-- campos fotos  -->
+                Foto Chamada:
+                <input type="file" name="foto1" id="foto1" size="50">    <!-- campos fotos  -->
                 <br><br>
                 Foto 02:
-                <input type="file" name="foto1" id="foto1" size="50">   <!-- campos fotos  -->
+                <input type="file" name="foto2" id="foto2" size="50">   <!-- campos fotos  -->
                 <br><br>
                 Foto 03:
-                <input type="file" name="foto2" id="foto2" size="50">   <!-- campos fotos  -->
+                <input type="file" name="foto3" id="foto3" size="50">   <!-- campos fotos  -->
                 <br><br>
 
 
@@ -112,28 +113,26 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
                 <input type="submit" name="alterar" id="alterar" value="Alterar" class = "buttons">
                 <input type="submit" name="excluir" id="excluir" value="Excluir" class = "buttons">
                 <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar" class = "buttons">
-
                 </div>
-                </div> 
+
+            </form> 
+        </div>
             <div>
                 <?php
                     //Se clicar no botão gravar
 if (isset($_POST['gravar'])){
     //receber as variaveis do HTML:
-    $codigo = $_POST['codigo'];
-    $descricao   = $_POST['descricao'];
-    $codmodelo = $_POST['codmodelo'];
-    $codcategoria = $_POST['codcategoria'];
-    $ano = $_POST['ano'];
-    $cor = $_POST['cor'];
-    $placa = $_POST['placa'];
-    $localizacao = $_POST['localizacao'];
-    $combustivel = $_POST['combustivel'];
-    $opcionais = $_POST['opcionais'];
-    $valor = $_POST['valor'];
-    $fotoChamada = $_FILES['fotoC']; // campos fotos
+    $data   = $_POST['data'];
+    $hora = $_POST['hora'];
+    $codregiao = $_POST['codregiao'];
+    $codcat = $_POST['codcat'];
+    $codcolunista = $_POST['codcolunista'];
+    $chamada = $_POST['chamada'];
+    $resumo = $_POST['resumo'];
+    $materia = $_POST['materia'];
     $foto1 = $_FILES['foto1']; // campos fotos
     $foto2 = $_FILES['foto2']; // campos fotos
+    $foto3 = $_FILES['foto3']; // campos fotos
 
     $error = 0;
     $error2 = 0;
@@ -221,6 +220,7 @@ if (isset($_POST['gravar'])){
                 preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i",$foto1['name'],$ext);
                 preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i",$foto2['name'],$ext2);    
                 preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i",$foto3['name'],$ext3);
+
                 // Gera um nome unico para a imagem
                 $nome_imagem1 = md5(uniqid(time())).".".$ext[1];
                 $nome_imagem2 = md5(uniqid(time())).".".$ext2[1];
@@ -236,10 +236,11 @@ if (isset($_POST['gravar'])){
                 move_uploaded_file($foto2['tmp_name'],$caminho_imagem2);
                 move_uploaded_file($foto3['tmp_name'],$caminho_imagem3);
             }
+        
 
     //comando do SQL (INSERT):
-    $sql = "insert into automoveis (codigo, descricao, codmodelo, codcategoria, ano, cor, placa, localizacao, combustivel, opcionais, valor, foto1, foto2, foto3) 
-            values ('$codigo', '$descricao', '$codmodelo', '$codcategoria', '$ano', '$cor', '$placa', '$localizacao', '$combustivel', '$opcionais', '$valor', '$caminho_imagem1', '$caminho_imagem2', '$caminho_imagem3')";
+    $sql = "insert into materias (data, hora, codregiao, codcat, codcolunista, chamada, resumo, materia, fotochamada, foto1, foto2) 
+            values ('$data', '$hora', '$codregiao', '$codcat', '$codcolunista', '$chamada', '$resumo', '$materia', '$caminho_imagem1', '$caminho_imagem2', '$caminho_imagem3')";
 
     //validar o comando no banco de dados:
     $resultado = mysql_query($sql);
@@ -253,16 +254,44 @@ if (isset($_POST['gravar'])){
     }
 }
 
+                    if (isset($_POST['alterar'])){
+
+                        $data   = $_POST['data'];
+                        $hora = $_POST['hora'];
+                        $chamada = $_POST['chamada'];
+                        $resumo = $_POST['resumo'];
+                        $materia = $_POST['materia'];
+                        $foto1 = $_FILES['foto1']; // campos fotos
+                        $foto2 = $_FILES['foto2']; // campos fotos
+                        $foto3 = $_FILES['foto3']; // campos fotos
+
+                        //
+                        $sql = "update materias set resumo = '$resumo', materia = '$materia'  
+                                where chamada = '$chamada'";
+
+                        $resultado = mysql_query($sql);
+                        if ($resultado){
+                            echo "<div class = 'form'>Dados alterados com sucesso.</div>";
+                        }
+                        else{
+                            echo "<div class = 'form'>Erro ao alterar dados.</div>";
+                        }
+                    }
+
                     //Se clicar no botão excluir
                     if (isset($_POST['excluir'])){
 
-                        $nome   = $_POST['nome'];
-                        $email  = $_POST['email'];
-                        $login  = $_POST['login'];
-                        $senha  = $_POST['senha'];
+                        $data   = $_POST['data'];
+                        $hora = $_POST['hora'];
+                        $chamada = $_POST['chamada'];
+                        $resumo = $_POST['resumo'];
+                        $materia = $_POST['materia'];
+                        $foto1 = $_FILES['foto1']; // campos fotos
+                        $foto2 = $_FILES['foto2']; // campos fotos
+                        $foto3 = $_FILES['foto3']; // campos fotos
 
-                        $sql = "delete from colunistas
-                                where email = '$email' or login = '$login'";
+                        $sql = "delete from materias
+                                where chamada = '$chamada'";
 
                         $resultado = mysql_query($sql);
                         if ($resultado){
@@ -275,12 +304,16 @@ if (isset($_POST['gravar'])){
 
                     if (isset($_POST['pesquisar'])){
                        
-                        $nome   = $_POST['nome'];
-                        $email  = $_POST['email'];
-                        $login  = $_POST['login'];
-                        $senha  = $_POST['senha'];
+                        $data   = $_POST['data'];
+                        $hora = $_POST['hora'];
+                        $chamada = $_POST['chamada'];
+                        $resumo = $_POST['resumo'];
+                        $materia = $_POST['materia'];
+                        $foto1 = $_FILES['foto1']; // campos fotos
+                        $foto2 = $_FILES['foto2']; // campos fotos
+                        $foto3 = $_FILES['foto3']; // campos fotos
 
-                        $sql = "select * from regiao";
+                        $sql = "select * from materias";
 
                         $resultado = mysql_query($sql);
 
@@ -288,10 +321,16 @@ if (isset($_POST['gravar'])){
                             echo "Desculpe, sua pesquisa não encontrou resultados.";
                         }
                         else{
-                            echo "Resultado da pesquisa por colunistas:"."<br><br>";
-                            while ($colunistas = mysql_fetch_array($resultado)){
-                                echo "Codigo: ".$colunistas['codigo']."<br>";
-                                echo "Nome: ".$colunistas ['nome']."<br><br>";
+                            echo "Resultado da pesquisa por materias:"."<br><br>";
+                            while ($materias = mysql_fetch_array($resultado)){
+                                echo "Codigo: ".$materias['codigo']."<br>";
+                                echo "Codigo Região: ".$materias['codregiao']."<br>";
+                                echo "Codigo Categoria: ".$materias['codcat']."<br>";
+                                echo "Codigo Colunista: ".$materias['codcolunista']."<br>";
+                                echo "Data/hora: ".$materias['data']." / ".$materias['hora']."<br>";
+                                echo "Chamada: ".$materias['chamada']."<br>";
+                                echo "Resumo: ".$materias ['resumo']."<br>";
+                                echo "Foto Chamada:" . "<br>" . "<img src='".$materias['fotochamada']."' alt='foto chamada' width='100' height='50'>"."<br><br>";
                             }
                         }
                     }

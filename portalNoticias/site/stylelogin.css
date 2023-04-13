@@ -71,12 +71,18 @@ select{
     font-size: 1em;
 }
 
+h2{
+    margin-bottom: 4%;
+}
 select::-ms-expand{
     display: none;
 }
 
 .buttons{
     padding: 5;
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+    border-radius: 10;
 }
 
 .select{
@@ -106,4 +112,8 @@ select::-ms-expand{
 .resultados{
     margin-top: 10;
 }
+
+
+
+
 
