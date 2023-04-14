@@ -14,8 +14,34 @@ header{
     padding: 1%;
 }
 
-.fodase{
-    height: 1000;
-    background-color: aqua;
+.menuoptions{
+    border-top-style: inset;
+    border-top-color: wheat;
+    border-top: 3;
+    border-width: 3;
+    height: 8%;
+    background-color: whitesmoke;
     width: 100%;
+}
+.click{
+    cursor: pointer;
+}
+
+header{
+    background-color: rgb(159, 177, 188);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+footer{
+    background-color: rgb(159, 177, 188);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10%;
+    border-spacing: 20;
 }
