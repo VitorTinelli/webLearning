@@ -11,23 +11,27 @@
         <header>
             <img src="assets/options.png" width="2%"  class="click"  onclick="toggleMenu()"/>
             <img src="assets/logo.png" width="10%"/>
-            <img src="assets/user.png" width="2%"/>
+            <img src="assets/user.png" width="2%" class="click" onclick="redLogin()"/>
         </header>
 
         <div id="menu" style="display:none">
             <div class="menuoptions">
-                
             </div>
         </div> 
+        
+        <main>
 
+
+        </main>
+        
         <footer>
-            <p>Developer: Vitor Tinelli | | Copyright© 2023 All rights reserved</p> <br><br>
-            <a href="www.github.com/VitorTinelli">
-                <img src="assets/ft_logoGithub.png" alt="github.com/VitorTinelli" width="6%">
-            </a>
-            <a href="www.instagram.com/VitorTinelli">
-                <img src="assets/ft_logoInstagram.png" alt="instagram.com/VitorTinelli" width="1%">
-            </a>
+            <div>
+            <p>Developer: Vitor Tinelli | | Copyright© 2023 All rights reserved</p>
+            </div>
+            <div>
+            <img src="assets/ft_logoGithub.png" alt="github.com/VitorTinelli" width="1.8%" onclick="redGit()" class="click">
+            <img src="assets/ft_logoInstagram.png" alt="instagram.com/VitorTinelli" width="2%" onclick="redInsta()" class="click">
+            </div>
         </footer>
         <script src="scripts/script.js"></script>
     </body>
