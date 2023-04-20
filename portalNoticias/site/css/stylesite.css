@@ -29,7 +29,8 @@ footer div{
 
 footer p{
     font-size: 90%;
-    color: #156A91;
+    color: #1d6986;
+    font-weight: bold;
 }
 
 footer img{
@@ -37,14 +38,77 @@ footer img{
     margin-top: 0.5%;
 }
 
-.menuoptions{
-    border-top-style: inset;
-    border-top-color: wheat;
-    border-top: 3;
-    border-width: 3;
-    height: 8%;
+main .colunistas{
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+main .colunistas-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: whitesmoke;
     width: 100%;
+}
+  
+main .colunista {
+    width: 200px; 
+    text-align: center;
+    margin: 20px;
+    background-color: whitesmoke;
+    display: inline-block;
+}
+  
+main .colunista img {
+    max-width: 100%;
+  }
+  
+main .colunista h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+
+.menu{
+
+    border-top-style: solid;
+    border-top-color:  #EF233C;
+    border-top: 1;
+    border-width: 2;
+
+}
+
+.menuoptions form{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center;
+    height: 6%;
+    background-color: whitesmoke;
+    width: 100%;    
+}
+
+.menuoptions select{
+    background-color: transparent;
+}
+
+.content{
+    width: 100%;
+    min-height: 92%;
+    max-height: fit-content;
+    background-color: whitesmoke;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%; 
 }
 
 .click{

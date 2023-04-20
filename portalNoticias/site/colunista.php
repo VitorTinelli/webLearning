@@ -17,7 +17,7 @@ $banco = mysql_select_db('portal');
 
     <body>
         <div>
-        <form name="formulario" method="post" action="colunista.php">
+        <form name="formulario" method="post" action="colunista.php" enctype="multipart/form-data">
             <div id="form">
                 <h2> Cadastro de colunistas</h2>
 
@@ -41,6 +41,10 @@ $banco = mysql_select_db('portal');
                     <label for="senha">Senha: </label>
                 </div>
 
+                Foto:
+                <input type="file" name="foto1" id="foto1" size="50">   <!-- campos fotos  -->
+                <br><br>
+
 
 
                 <div>
@@ -49,9 +53,9 @@ $banco = mysql_select_db('portal');
                 <input type="submit" name="alterar" id="alterar" value="Alterar" class = "buttons">
                 <input type="submit" name="excluir" id="excluir" value="Excluir" class = "buttons">
                 <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar" class = "buttons">
-
                 </div>
-                </div> 
+            </form>
+            </div>
             <div>
                 <?php
                     //Se clicar no botão gravar
@@ -61,22 +65,79 @@ $banco = mysql_select_db('portal');
                         $email  = $_POST['email'];
                         $login  = $_POST['login'];
                         $senha  = $_POST['senha'];
+                        $foto1 = $_FILES['foto1']; // campos fotos
+                        $error = 0;
 
-                        //comando do SQL (INSERT):
-                        $sql = "insert into colunistas (nome, email, login, senha) 
-                                values ('$nome', '$email', '$login', '$senha')";
-                                
-                        //validar o comando no banco de dados:
-                        $resultado = mysql_query($sql);
+                    if ((!empty($foto1['name'])))
+    {
+            // pode definir Largura maxima em pixels
+            $largura = 5000;
+            // pode definir Altura maxima em pixels
+            $altura = 5000;
+            // pode definir Tamanho maximo do arquivo em bytes
+            $tamanho = 5000000;
+    
+            // Verifica se o arquivo anexado nao e uma imagem (extensoes)
+            if(!preg_match("/^image\/(jpg|jpeg|png|bmp)$/",$foto1['type'])){
+                $error[1] = "Não é uma imagem...";
+                }
+    
+            // capturar as dimensoes da imagem
+            $dimensoes = getimagesize($foto1['tmp_name']);
+           
+    
+    
+            // Verifica se a largura da imagem maior que a largura permitida
+            if($dimensoes[0] > $largura) {
+                $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
+            }
+    
+            // Verifica se a altura da imagem  maior que a altura permitida
+            if($dimensoes[1] > $altura) {
+                $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+            }
+    
+            // Verifica se o tamanho da imagem maior que o tamanho permitido
+            if($foto1['size'] > $tamanho) {
+                $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
+            }
+    
+            // Se nao houver nenhum erro na foto anexada
+            if ($error == 0 )
+            {
+                // Pega extensao da imagem
+                preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i",$foto1['name'],$ext);
 
-                        //verificar se gravou no banco ou ocorreu erro:
-                        if ($resultado){
-                            echo "Dados gravados com sucesso.";
-                        }
-                        else{
-                            echo "Erro ao gravar dados.";
-                        }
-                    }
+
+                // Gera um nome unico para a imagem
+                $nome_imagem1 = md5(uniqid(time())).".".$ext[1];
+
+    
+                // Caminho de onde armazena a imagem (pasta criada para fotos)
+                $caminho_imagem1 = "fotos/".$nome_imagem1;
+
+    
+                // Faz o upload da imagem para seu respectivo caminho (pasta criada para fotos)
+                move_uploaded_file($foto1['tmp_name'],$caminho_imagem1);
+
+
+                //comando do SQL (INSERT):
+                $sql = "insert into colunistas (nome, email, login, senha, foto) 
+                values ('$nome', '$email', '$login', '$senha', '$caminho_imagem1')";
+                
+                //validar o comando no banco de dados:
+                $resultado = mysql_query($sql);
+
+                //verificar se gravou no banco ou ocorreu erro:
+                if ($resultado){
+                    echo "Dados gravados com sucesso.";
+                }
+                else{
+                    echo "Erro ao gravar dados.";
+                }
+            }
+    }
+}
 
                     //Se clicar no botão alterar
                     if (isset($_POST['alterar'])){
@@ -139,13 +200,12 @@ $banco = mysql_select_db('portal');
                                 echo "Codigo: ".$colunistas['codigo']."<br>";
                                 echo "Email: ".$colunistas['email']."<br>";
                                 echo "Nome: ".$colunistas ['nome']."<br><br>";
+                                echo "<img src='".$colunistas['foto']."' alt='foto' width='100' height='75'>"."<br><br>";
                             }
                         }
                     }
                 ?>
             </div>
             </div>
-        </form>
-        
     </body>
 </html>
