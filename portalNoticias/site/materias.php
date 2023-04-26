@@ -5,6 +5,7 @@ $servidor = mysql_connect('localhost','root','') ;
 //conectar com o banco: portal
 $banco = mysql_select_db('portal');
 
+
 $sql_regiao = "Select * from regiao";
 $pesquisar_regiao = mysql_query($sql_regiao);
 
@@ -127,9 +128,9 @@ if (isset($_POST['gravar'])){
     $codregiao = $_POST['codregiao'];
     $codcat = $_POST['codcat'];
     $codcolunista = $_POST['codcolunista'];
-    $chamada = $_POST['chamada'];
+    $chamada = $_POST ['chamada'];
     $resumo = $_POST['resumo'];
-    $materia = $_POST['materia'];
+    $materia = $_POST ['materia'];
     $foto1 = $_FILES['foto1']; // campos fotos
     $foto2 = $_FILES['foto2']; // campos fotos
     $foto3 = $_FILES['foto3']; // campos fotos

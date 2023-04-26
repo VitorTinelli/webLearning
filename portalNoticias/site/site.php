@@ -75,7 +75,7 @@ if(!empty($_POST['pesq_colunista']))
     <head>
         <meta charset="UTF-8"/>
         <title>Portal da Ilha</title>
-        <link rel="stylesheet" type= "text/css" href="css/stylesite.css">
+        <link rel="stylesheet" type= "text/css" href="css/sitestyle.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
@@ -138,9 +138,10 @@ if(!empty($_POST['pesq_colunista']))
         </form>
         <main>
             <div class="colunistas">
-                Conheça nossos colunistas!
+                <b>NOSSOS COLUNISTAS:</b>
             </div>
-            <div colunistas-container>
+
+            <div class="colunistas-container">
                     <?php
                         $sql = "select * from colunistas";
 
@@ -167,29 +168,23 @@ if(!empty($_POST['pesq_colunista']))
                                 from materias
                                 ORDER BY data desc limit 3";
                 $seleciona_materias = mysql_query($sql_materias);
-
                 ?>
         
-                <table border=0>
-                <tr>
-                <th><b>Noticias em Destaque: </b></th>
-                </tr>
+            <div class="noticias"><b>Noticias em Destaque:</b></div>
                 
-
             <?php
-                echo '<tr>';
+                
                 while($res = mysql_fetch_array($seleciona_materias))
                         {
                         echo '<td><a href="materiacompleta.php">'.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a><br>';
                         echo utf8_encode(strftime('%A - %d/%m/%Y', strtotime($res['data']))).' - '. $res['hora'].'<br>';
                         echo utf8_encode($res['chamada']).'</td>';
                         }
-                echo '</tr>';
+                
                 }
                 else
                 {
                 echo "<center><b>Noticias pesquisadas: </b>"."<br><br>";
-                echo '<tr>';
                 while($res = mysql_fetch_array($seleciona_materias))
                         {
                         echo '<td><a href="materiacompleta.php">'.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a>';
@@ -198,14 +193,14 @@ if(!empty($_POST['pesq_colunista']))
                         echo '<b>'.utf8_encode($res['chamada']).'</b><br>';
                         echo utf8_encode($res['resumo']).'</td><br><br>';
                         }
-                echo '</tr></center>';
+                echo '</center>';
                 }
                 ?>
                 </div>
         </main>
 
         
-<!-- 
+
         <div>
             <footer>
                 <div>
@@ -216,7 +211,7 @@ if(!empty($_POST['pesq_colunista']))
                 <img src="assets/ft_logoInstagram.png" alt="instagram.com/VitorTinelli" width="2%" onclick="redInsta()" class="click">
                 </div>
             </footer>
-        <div> -->
+        <div> 
         
     
 
