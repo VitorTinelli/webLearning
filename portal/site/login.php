@@ -1,6 +1,7 @@
 <?php
 $conectar = mysql_connect('localhost','root','');
 $banco    = mysql_select_db('portal');
+mysql_set_charset('utf8');
 
 ?>
 <html>

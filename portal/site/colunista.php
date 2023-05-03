@@ -3,6 +3,7 @@
 $servidor = mysql_connect('localhost','root','') ;
 
 //conectar com o banco: portal
+mysql_set_charset('utf8');
 $banco = mysql_select_db('portal');
 ?>
 

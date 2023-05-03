@@ -7,6 +7,7 @@ $banco = mysql_select_db('portal');
 
 $vazio = 0;
 
+
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');   // definir fuso horario e local para data
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -75,7 +76,7 @@ if(!empty($_POST['pesq_colunista']))
     <head>
         <meta charset="UTF-8"/>
         <title>Portal da Ilha</title>
-        <link rel="stylesheet" type= "text/css" href="css/sitestyle.css">
+        <link rel="stylesheet" type= "text/css" href="css/stylesit.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
@@ -164,7 +165,7 @@ if(!empty($_POST['pesq_colunista']))
             <?php
                 if ($vazio == 0)
                 {
-                $sql_materias = "select fotochamada, data, hora, chamada
+                $sql_materias = "select codigo, fotochamada, data, hora, chamada
                                 from materias
                                 ORDER BY data desc limit 3";
                 $seleciona_materias = mysql_query($sql_materias);
@@ -173,35 +174,56 @@ if(!empty($_POST['pesq_colunista']))
             <div class="noticias"><b>Noticias em Destaque:</b></div>
                 
             <?php
-                
+                echo '<div class="materias-container">';
                 while($res = mysql_fetch_array($seleciona_materias))
                         {
-                        echo '<td><a href="materiacompleta.php">'.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a><br>';
-                        echo utf8_encode(strftime('%A - %d/%m/%Y', strtotime($res['data']))).' - '. $res['hora'].'<br>';
-                        echo utf8_encode($res['chamada']).'</td>';
+                        echo '<div class="materias">';
+                            echo ''.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a><br>';
+                            echo '<div class="materiasTexto">';
+                                echo '<p>';
+                                echo utf8_encode(strftime('%A - %d/%m/%Y', strtotime($res['data']))).' - '. $res['hora'];
+                                echo '</p><p>';
+                                echo utf8_encode($res['chamada']);
+                                echo '</p>';
+                                echo "<form action='noticia.php?codigo = codigoM' method='POST'> 
+                                    <input type='hidden' name='codigoM' id='codigoM' value='".$res['codigo']."'> 
+                                    <input type='submit' name='ler_mais' id='ler_mais' value='Leia Mais'>
+                                    </form>";
+                            echo '</div>';
+                        echo '</div>';
                         }
-                
                 }
                 else
                 {
                 echo "<center><b>Noticias pesquisadas: </b>"."<br><br>";
                 while($res = mysql_fetch_array($seleciona_materias))
                         {
-                        echo '<td><a href="materiacompleta.php">'.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a>';
-                        echo '<td> - </td><td><a href="materiacompleta.php">'.utf8_encode('<img src="'.$res['foto1'].'"  height="180" width="250" />').'</a><br>';
-                        echo utf8_encode(strftime('%A - %d/%m/%Y', strtotime($res['data']))).' - '. $res['hora'].'<br>';
-                        echo '<b>'.utf8_encode($res['chamada']).'</b><br>';
-                        echo utf8_encode($res['resumo']).'</td><br><br>';
+                            echo '<div class="materias">';
+                            echo ''.utf8_encode('<img src="'.$res['fotochamada'].'"  height="180" width="250" />').'</a><br>';
+                            echo '<div class="materiasTexto">';
+                                echo '<p>';
+                                echo utf8_encode(strftime('%A - %d/%m/%Y', strtotime($res['data']))).' - '. $res['hora'];
+                                echo '</p><p>';
+                                echo utf8_encode($res['chamada']);
+                                echo '</p>';
+                                echo "<form action='noticia.php?codigo = codigoM' method='POST'> 
+                                    <input type='hidden' name='codigoM' id='codigoM' value='".$res['codigo']."'> 
+                                    <input type='submit' name='ler_mais' id='ler_mais' value='Leia Mais'>
+                                    </form>";
+                            echo '</div>';
+                        echo '</div>';
                         }
                 echo '</center>';
                 }
+                echo '</div>';
                 ?>
                 </div>
+
         </main>
 
         
 
-        <div>
+        
             <footer>
                 <div>
                 <p>Developer: Vitor Tinelli | | Copyright© 2023 All rights reserved</p>
@@ -211,7 +233,6 @@ if(!empty($_POST['pesq_colunista']))
                 <img src="assets/ft_logoInstagram.png" alt="instagram.com/VitorTinelli" width="2%" onclick="redInsta()" class="click">
                 </div>
             </footer>
-        <div> 
         
     
 
