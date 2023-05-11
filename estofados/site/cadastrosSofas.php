@@ -144,7 +144,6 @@ mysql_set_charset('utf8');
                                     
                                     // Faz o upload da imagem para seu respectivo caminho (pasta criada para fotos)
                                     move_uploaded_file($foto1['tmp_name'],$caminho_imagem1);
-                                    
                                 }
                             
 

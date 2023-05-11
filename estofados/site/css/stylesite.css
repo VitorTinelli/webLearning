@@ -1,0 +1,123 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Arial";
+}
+
+header{
+    background-color: #E9EBED;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1%;
+}
+.menu{
+    background-color: #E9EBED;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 1%;
+    padding-left: 40%;
+    padding-right: 40%;
+}
+
+.menuoptions form{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center;
+    height: 6%;
+    background-color: #E9EBED;
+    width: 100%;    
+}
+
+.menuoptions select{
+    background-color: transparent;
+}
+
+.content{
+    width: 100%;
+    min-height: 72%;
+    max-height: fit-content;
+    background-color: #E9EBED;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%; 
+}
+
+.text{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #E9EBED;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+footer{
+    background-color: #E9EBED;
+    width: 100%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+footer div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p{
+    font-size: 90%;
+    color: #000;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+footer img{
+    margin-right: 0.5%;
+    margin-top: 0.5%;
+}
+
+.click{
+    cursor: pointer;
+}
+a:link, a:visited{
+    color: #000;
+    text-decoration: none;
+}
+
+.produtos-container {
+    display: inline-block;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #EEEEEE;
+    width: 100%;
+}
+  
+.produtos{
+    display: inline-block;
+    min-width: 20%; 
+    max-width: 30%;
+    text-align: center;
+    margin: 20px;
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #FFFFFF;
+    border-radius: 10%;
+    border-width: 1;
+    padding: 1%
+}
+
+
+
+
+
+

@@ -14,7 +14,7 @@ mysql_set_charset('utf8');
     </head>
 
 
-    <body>
+    <body> 
         <div>
         <form name="formulario" method="post" action="cadastroAlmofadas.php" enctype="multipart/form-data">
             <div id="form">
@@ -36,8 +36,8 @@ mysql_set_charset('utf8');
                     <label for="medida">Medida: </label>
                 </div>
                 <div class="input-forms">
-                    <input required type="text" name="peso" id="peso" size=20 class="input">
-                    <label for="peso">Peso: </label>
+                    <input required type="text" name="conjunto" id="conjunto" size=20 class="input">
+                    <label for="conjunto">Conjunto (Conjunto ou Avulsa): </label>
                 </div>
                 <div class="input-forms">
                     <input required type="text" name="modelo" id="modelo" size=20 class="input">
@@ -77,7 +77,7 @@ mysql_set_charset('utf8');
                         $descricao   = $_POST['descricao'];
                         $preco       = $_POST['preco'];
                         $medida      = $_POST['medida'];
-                        $peso        = $_POST['peso'];
+                        $conjunto        = $_POST['conjunto'];
                         $modelo      = $_POST['modelo'];
                         $tecido      = $_POST['tecido'];
                         $cor         = $_POST['cor'];
@@ -144,8 +144,8 @@ mysql_set_charset('utf8');
 
 
                         //comando do SQL (INSERT):
-                        $sql = "insert into almofadas (nome, descricao, preco, medida, peso, modelo, tecido, cor, enchimento, foto1) 
-                                values ('$nome', '$descricao', '$preco', '$medida', '$peso', '$modelo', '$tecido', '$cor', '$enchimento', '$caminho_imagem1')";
+                        $sql = "insert into almofadas (nome, descricao, preco, medida, conjunto, modelo, tecido, cor, enchimento, foto1) 
+                                values ('$nome', '$descricao', '$preco', '$medida', '$conjunto', '$modelo', '$tecido', '$cor', '$enchimento', '$caminho_imagem1')";
 
                         //validar o comando no banco de dados:
                         $resultado = mysql_query($sql);
@@ -212,7 +212,7 @@ mysql_set_charset('utf8');
                                 echo "Descrição: ".$almofadas ['descricao']."<br>";
                                 echo "Preço: ".$almofadas ['preco']."<br>";
                                 echo "Medida: ".$almofadas ['medida']."<br>";
-                                echo "Peso: ".$almofadas ['peso']."<br>";
+                                echo "conjunto: ".$almofadas ['conjunto']."<br>";
                                 echo "modelo: ".$almofadas ['modelo']."<br>";
                                 echo "Tecido: ".$almofadas ['tecido']."<br>";
                                 echo "Cor: ".$almofadas ['cor']."<br>";
