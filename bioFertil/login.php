@@ -28,7 +28,9 @@ $conectar = mysqli_connect('localhost','root','', 'biofertil');
                 <div>
                 <!-- Botões -->
                 <input type="submit" name="entrar" id="entrar" value="Entrar" class = "buttons">
+                <input type="submit" name="criar" id="criar" value="Criar conta" class = "buttons">
                 </div>
+
 
             </div> 
             <div class="resultados">
@@ -50,6 +52,10 @@ $conectar = mysqli_connect('localhost','root','', 'biofertil');
                         else{
                             echo "Usuário ou senha inválidos!";
                         }
+                    }
+
+                    if (isset($_POST['criar'])){
+                        header("Location: cadastroEmpresas.php");
                     }
             ?>
             </div>
