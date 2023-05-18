@@ -91,8 +91,7 @@ $servidor = mysqli_connect('localhost','root','', 'biofertil') ;
                         if ($resultado){
                             echo "Dados gravados com sucesso.";
                             header("Location: login.php");   }
-                        
-    }                  else{
+                        else{
                             echo "Erro ao gravar dados.";
                         }
                     }

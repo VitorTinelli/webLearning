@@ -1,7 +1,5 @@
 <?php
 $conectar = mysqli_connect('localhost','root','', 'biofertil');
-
-
 ?>
 <html>
     <head>
@@ -47,7 +45,7 @@ $conectar = mysqli_connect('localhost','root','', 'biofertil');
                             if ($usuarios["user"] !="")  {
                                 $_SESSION['user'] = $usuarios['user'];
                                 $_SESSION['senha'] = $usuarios['senha'];
-                                header("Location: ??");   }
+                                header("Location: https://lucasbfrasson.wixsite.com/biofertil");   }
                         }
                         else{
                             echo "Usuário ou senha inválidos!";
