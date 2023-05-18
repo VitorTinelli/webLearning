@@ -1,7 +1,6 @@
 <?php
-$conectar = mysql_connect('localhost','root','');
-$banco    = mysql_select_db('biofertil');
-mysql_set_charset('utf8');
+$conectar = mysqli_connect('localhost','root','', 'biofertil');
+
 
 ?>
 <html>
@@ -37,18 +36,18 @@ mysql_set_charset('utf8');
             <div class="resultados">
                 <?php
                     if (isset($_POST['entrar'])){
-                        $login   = $_POST['nome'];
+                        $login   = $_POST['user'];
                         $senha   = $_POST['senha'];
-                        $sql = "SELECT nome, senha FROM usuarios
-                                WHERE nome = '$login' AND senha = '$senha'";
-                        $resultado = mysql_query($sql);
+                        $sql = "SELECT user, senha FROM usuarios
+                                WHERE user = '$login' AND senha = '$senha'";
+                        $resultado = mysqli_query($conectar ,$sql);
 
-                        if (mysql_num_rows($resultado) <> 0){  
-                            $usuarios = mysql_fetch_array($resultado);
-                            if ($usuarios["nome"] !="")  {
-                                $_SESSION['nome'] = $usuarios['nome'];
+                        if (mysqli_num_rows($resultado) <> 0){  
+                            $usuarios = mysqli_fetch_array($resultado);
+                            if ($usuarios["user"] !="")  {
+                                $_SESSION['user'] = $usuarios['user'];
                                 $_SESSION['senha'] = $usuarios['senha'];
-                                header("Location: menu.html");   }
+                                header("Location: ??");   }
                         }
                         else{
                             echo "Usuário ou senha inválidos!";
