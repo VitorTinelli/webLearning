@@ -1,8 +1,5 @@
 <?php
-$conectar = mysql_connect('localhost','root','');
-$banco    = mysql_select_db('biofertil');
-mysql_set_charset('utf8');
-
+$conectar = mysqli_connect('localhost','root','', 'biofertil');
 ?>
 <html>
     <head>
@@ -31,28 +28,34 @@ mysql_set_charset('utf8');
                 <div>
                 <!-- Botões -->
                 <input type="submit" name="entrar" id="entrar" value="Entrar" class = "buttons">
+                <input type="submit" name="criar" id="criar" value="Criar conta" class = "buttons">
                 </div>
+
 
             </div> 
             <div class="resultados">
                 <?php
                     if (isset($_POST['entrar'])){
-                        $login   = $_POST['nome'];
+                        $login   = $_POST['user'];
                         $senha   = $_POST['senha'];
-                        $sql = "SELECT nome, senha FROM usuarios
-                                WHERE nome = '$login' AND senha = '$senha'";
-                        $resultado = mysql_query($sql);
+                        $sql = "SELECT user, senha FROM usuarios
+                                WHERE user = '$login' AND senha = '$senha'";
+                        $resultado = mysqli_query($conectar ,$sql);
 
-                        if (mysql_num_rows($resultado) <> 0){  
-                            $usuarios = mysql_fetch_array($resultado);
-                            if ($usuarios["nome"] !="")  {
-                                $_SESSION['nome'] = $usuarios['nome'];
+                        if (mysqli_num_rows($resultado) <> 0){  
+                            $usuarios = mysqli_fetch_array($resultado);
+                            if ($usuarios["user"] !="")  {
+                                $_SESSION['user'] = $usuarios['user'];
                                 $_SESSION['senha'] = $usuarios['senha'];
-                                header("Location: menu.html");   }
+                                header("Location: https://lucasbfrasson.wixsite.com/biofertil");   }
                         }
                         else{
                             echo "Usuário ou senha inválidos!";
                         }
+                    }
+
+                    if (isset($_POST['criar'])){
+                        header("Location: cadastroEmpresas.php");
                     }
             ?>
             </div>
