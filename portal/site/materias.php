@@ -53,8 +53,8 @@ $pesquisar_colunistas = mysql_query($sql_colunistas);
                 </div>
 
                 <div class="select">
-                <select name="codcat" id="codcat">
-                <option value = "0" selected disabled>Selecione a categoria</option>
+                <select name="codfunc" id="codfunc">
+                <option value = "0" selected disabled>Selecione o funcionario</option>
                     <?php
                     if (mysql_num_rows($pesquisar_categorias) <> 0){
                         while ($categorias = mysql_fetch_array($pesquisar_categorias)){

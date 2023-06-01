@@ -7,23 +7,23 @@ $banco    = mysql_select_db('industria');
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Gerenciar Funcionário </title>
+    <title>Gerenciar Produtos </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
 <body>
     <script>
         
+
         function obterDadosModal(valor) {
 
             var retorno = valor.split("*");
 
             document.getElementById('cod').value   = retorno[0];
             document.getElementById('nome').value  = retorno[1];
-            document.getElementById('login').value = retorno[2];
-            document.getElementById('senha').value = retorno[3];
+            document.getElementById('quantidade').value = retorno[2];
+            document.getElementById('preco').value = retorno[3];
         }
     </script>
     
@@ -31,14 +31,14 @@ $banco    = mysql_select_db('industria');
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Cadastrar Funcionário:</h1>
+                    <h1>Cadastrar Produtos:</h1>
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para se fazer cadastro  -->
-                    <form class="form-group well" action="funcionarios.php" method="POST">
+                    <form class="form-group well" action="produtos.php" method="POST">
                         <input type="text" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="login" class="span3" value="" required placeholder="Login" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="senha" class="span3" value="" required placeholder="Senha" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="quantidade" class="span3" value="" required placeholder="quantidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="preco" class="span3" value="" required placeholder="preco" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-success btn-large" name="cadastrar" style="height: 35px">Cadastrar</button>
                     </form>
                 </div>
@@ -60,11 +60,11 @@ $banco    = mysql_select_db('industria');
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para se fazer alteracao -->
-                    <form class="form-group well" action="funcionarios.php" method="POST">
+                    <form class="form-group well" action="produtos.php" method="POST">
                         Código<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
                         Nome<br>  <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Login<br> <input id="login" type="text" name="login" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Senha<br> <input id="senha" type="text" name="senha" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Preço<br> <input id="preco" type="text" name="preco" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-primary" name="alterar" style="height: 35px">Alterar</button>
                     </form>
                 </div>
@@ -81,16 +81,16 @@ $banco    = mysql_select_db('industria');
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Excluir Funcionário:</h1>
+                    <h1>Excluir Produtos:</h1>
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
-                    <form class="form-group well" action="funcionarios.php" method="POST">
-                        Você tem certeza que deseja excluir o funcionário?<br><br>
+                    <form class="form-group well" action="produtos.php" method="POST">
+                        Você tem certeza que deseja excluir o produto?<br><br>
                         Codigo<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
                         Nome<br>  <input id="nome" type="text" name="nome" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Login<br> <input id="login" type="text" name="login" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Senha<br> <input id="senha" type="text" name="senha" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Preço<br> <input id="preco" type="text" name="preco" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button>
                     </form>
                 </div>
@@ -104,8 +104,8 @@ $banco    = mysql_select_db('industria');
     <div class="container">
         <div class="row">
 
-            <h2>Funcionários: </h2><br>
-            <form action="funcionarios.php" method="POST">
+            <h2>Produtos: </h2><br>
+            <form action="produtos.php" method="POST">
                 <input type="text" name="nome" placeholder="Nome:" class="span4" style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
@@ -115,8 +115,8 @@ $banco    = mysql_select_db('industria');
                 <tr>
                     <td><b>Código</b></td>
                     <td><b>Nome</b></td>
-                    <td><b>Login</b></td>
-                    <td><b>Senha</b></td>
+                    <td><b>Quantidade</b></td>
+                    <td><b>Preço</b></td>
                     <td><b>Gerenciar</b></td>
                 </tr>
                   <?php
@@ -124,20 +124,20 @@ $banco    = mysql_select_db('industria');
                   if (isset($_POST['cadastrar']))
                 {
                     $nome  = $_POST['nome'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
+                    $quantidade = $_POST['quantidade'];
+                    $preco = $_POST['preco'];
 
-                    $busca = mysql_query("SELECT * FROM funcionarios WHERE nome = '$nome' OR login = '$login'");
+                    $busca = mysql_query("SELECT * FROM produtos WHERE nome = '$nome'");
                     $resultadoBusca = mysql_num_rows($busca);
 
                     if($resultadoBusca == 0) {
-                        $sql = "insert into funcionarios (nome, login, senha)
-                        values ('$nome','$login','$senha')";
+                        $sql = "insert into produtos (nome, quantidade, preco)
+                                values ('$nome','$quantidade','$preco')";
                         $resultado = mysql_query($sql);
                     } else {
                         ?>
                         <script>
-                            window.alert("Funcionário já cadastrado!")
+                            window.alert("Produta já cadastrado!")
                         </script>
                         <?php
                     }
@@ -147,10 +147,10 @@ $banco    = mysql_select_db('industria');
                 {
                     $cod   = $_POST['cod'];
                     $nome  = $_POST['nome'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
+                    $quantidade = $_POST['quantidade'];
+                    $preco = $_POST['preco'];
 
-                    $sql = "update funcionarios set nome = '$nome', login = '$login', senha = '$senha'
+                    $sql = "update produtos set nome = '$nome', quantidade = '$quantidade', preco = '$preco'
                             where cod = '$cod'";
                     $resultado = mysql_query($sql);
                 }
@@ -158,10 +158,10 @@ $banco    = mysql_select_db('industria');
                 {
                     $cod   = $_POST['cod'];
                     $nome  = $_POST['nome'];
-                    $login = $_POST['login'];
-                    $senha = $_POST['senha'];
+                    $quantidade = $_POST['quantidade'];
+                    $preco = $_POST['preco'];
 
-                    $sql = "delete from funcionarios where cod = '$cod'";
+                    $sql = "delete from produtos where cod = '$cod'";
                     $resultado = mysql_query($sql);
                 }
 
@@ -169,26 +169,26 @@ $banco    = mysql_select_db('industria');
                 {
                    $nome   = strtoupper($_POST['nome']);    // converter maiuscula
 
-                   $consulta = "select cod,nome,login,senha from funcionarios
+                   $consulta = "select cod,nome,quantidade,preco from produtos
                                 where UPPER(nome) like '%$nome%'";
 
                    $resultado = mysql_query($consulta);
                 }
                 else
                 {
-                    $consulta = "select cod,nome,login,senha from funcionarios";
+                    $consulta = "select cod,nome,quantidade,preco from produtos";
                     $resultado = mysql_query($consulta);
                 }
 
                 while ($dados = mysql_fetch_array($resultado))
                 {
-                    $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['login'] . "*" . $dados['senha'];
+                    $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'];
                 ?>
                     <tr>
                         <td><?php echo $dados['cod']; ?></td>
                         <td><?php echo $dados['nome']; ?></td>
-                        <td><?php echo $dados['login']; ?></td>
-                        <td><?php echo $dados['senha']; ?></td>
+                        <td><?php echo $dados['quantidade']; ?></td>
+                        <td><?php echo $dados['preco']; ?></td>
                         <td>
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
