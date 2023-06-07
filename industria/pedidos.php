@@ -10,6 +10,7 @@ $pesquisar_funcionarios = mysql_query($sql_funcionarios);
 
 $sql_produtos           = "Select * from produtos";
 $pesquisar_produtos     = mysql_query($sql_produtos); 
+
 ?>
 
 <html>
@@ -42,7 +43,7 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Cadastrar Cliente:</h1>
+                    <h1>Cadastrar Pedidos:</h1>
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para se fazer cadastro  -->
@@ -99,7 +100,16 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
 
     <div class="modal fade" id="myModalAlterar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-
+            <?php
+            $sql_clientes           = "Select * from clientes";
+            $pesquisar_clientes1     = mysql_query($sql_clientes);
+            
+            $sql_funcionarios       = "Select * from funcionarios";
+            $pesquisar_funcionarios1 = mysql_query($sql_funcionarios);
+            
+            $sql_produtos           = "Select * from produtos";
+            $pesquisar_produtos1     = mysql_query($sql_produtos); 
+            ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h1>Alterar Dados:</h1>
@@ -108,10 +118,44 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
                     <!--- Modal com form para se fazer alteracao -->
                     <form class="form-group well" action="Pedidos.php" method="POST">
                         Código<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        datapedido<br>  <input id="datapedido" type="text" name="datapedido" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codfunc<br> <input id="codfunc" type="text" name="codfunc" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codcli<br> <input id="codcli" type="text" name="codcli" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codprod<br> <input type="text"  id ="codprod" name="codprod" class="span3" value="" required style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="date" name="datapedido" id="datapedido" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <select name="codfunc" id="codfunc" required>
+                        <option value = "0" selected disabled style=" margin-bottom: -2px; height: 25px;">Selecione o Funcionário</option>
+                            <?php
+                            if (mysql_num_rows($pesquisar_funcionarios1) <> 0){
+                                while ($funcionarios = mysql_fetch_array($pesquisar_funcionarios1)){
+                                    echo '<option value = "'.$funcionarios['cod'].'">'
+                                                            .$funcionarios['nome'].'</option>';
+                                }
+                                echo '</select>';
+                            }
+                            ?> 
+                        <br><br>
+                        <select name="codcli" id="codcli" required>
+                        <option value = "0" selected disabled style="margin-bottom: -2px; height: 25px;">Selecione o Cliente</option>
+                            <?php
+                            if (mysql_num_rows($pesquisar_clientes1) <> 0){
+                                while ($clientes = mysql_fetch_array($pesquisar_clientes1)){
+                                    echo '<option value = "'.$clientes['cod'].'">'
+                                                            .$clientes['nome'].'</option>';
+                                }
+                                echo '</select>';
+                            }
+                            ?> 
+                        <br><br>
+                        <select name="codprod" id="codprod" required>
+                        <option value = "0" selected disabled style="margin-bottom: -2px; height: 25px;">Selecione o Produto</option>
+                            <?php
+                            if (mysql_num_rows($pesquisar_produtos1) <> 0){
+                                while ($produtos = mysql_fetch_array($pesquisar_produtos1)){
+                                    echo '<option value = "'.$produtos['cod'].'">'
+                                                            .$produtos['nome'].'</option>';
+                                }
+                                echo '</select>';
+                            }
+                            ?> 
+                        <br><br>
+                        preco<br> <input type="text" id = "preco" name="preco" class="span3" value="" required style=" margin-bottom: -2px; height: 25px;"><br><br>
                         quantidade<br> <input type="text" id = "quantidade" name="quantidade" class="span3" value="" required style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-primary" name="alterar" style="height: 35px">Alterar</button>
                     </form>
@@ -134,14 +178,36 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
                     <form class="form-group well" action="Pedidos.php" method="POST">
-                        Você tem certeza que deseja excluir o clinte?<br><br>
-                        Codigo<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        datapedido<br>  <input id="datapedido" type="text" name="datapedido" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codfunc<br> <input id="codfunc" type="text" name="codfunc" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codcli<br> <input id="codcli" type="text" name="codcli" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        codprod<br> <input id="codprod" type="text" name="codprod" class="span3" value="" readonly style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" value="" readonly style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button>
+                    <table border="1px" bordercolor="#F5F5F5" class="table ">
+                    <?php
+                    $consulta = "select * from pedidos";
+                    $resultado = mysql_query($consulta);
+                    ?>
+                    Insira o código do produto que deseja excluir:<br>
+                    <input id="cod" type="text" name="cod" value="" required><br><br>
+                    <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                    <tr>
+                        <td><b>Código</b></td>
+                        <td><b>Datapedido</b></td>
+                        <td><b>Quantidade</b></td>
+                        <td><b>Preço</b></td>
+                    </tr>
+                    <?php
+                    while ($dados = mysql_fetch_array($resultado))
+                    {
+                    $strdados = $dados['cod'] . "*" .  $dados['datapedido'] . "*" . $dados['quantidade'] .  "*" . $dados['preco'] ;
+                    ?>
+                    <tr>
+                        <td><?php echo $dados['cod']; ?></td>
+                        <td><?php echo $dados['datapedido']; ?></td>
+                        <td><?php echo $dados['quantidade']; ?></td>
+                        <td><?php echo $dados['preco']; ?></td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                    </table>
+        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -156,10 +222,27 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
 
             <h2>Pedidos: </h2><br>
             <form action="Pedidos.php" method="POST">
-                <input type="text" name="datapedido" placeholder="datapedido:" class="span4" style="margin-bottom: -2px; height: 25px;">
-                <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
+            <select name="codprod" id="codprod">
+                        <option value = "0" selected disabled style="margin-bottom: -2px; height: 25px;">Selecione o Produto</option>
+                            <?php
+                            $sql_produtos           = "Select * from produtos";
+                            $pesquisar_produtos     = mysql_query($sql_produtos); 
+
+                            if (mysql_num_rows($pesquisar_produtos) <> 0){
+                                while ($produtos = mysql_fetch_array($pesquisar_produtos)){
+                                    echo '<option value = "'.$produtos['cod'].'">'
+                                                            .$produtos['nome'].'</option>';
+                                }
+                                echo '</select>';
+                            }
+                            ?>
+                    <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
-                <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button></a>
+                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button>
+                </a>
+                <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                            <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                    </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
@@ -207,6 +290,7 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
                     $codfunc = $_POST['codfunc'];
                     $codcli = $_POST['codcli'];
                     $codprod = $_POST['codprod'];
+                    $preco = $_POST['preco'];
                     $quantidade = $_POST['quantidade'];
 
                     $sql = "update Pedidos set datapedido = '$datapedido', codfunc = '$codfunc', codcli = '$codcli', codprod = '$codprod', quantidade = '$quantidade'
@@ -223,30 +307,46 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
 
                 if (isset($_POST['pesquisar']))
                 {
-                   $datapedido   = strtoupper($_POST['datapedido']);
+                   $codprod   = $_POST['codprod'];
 
-                   $consulta = "select cod,datapedido,codfunc,codcli, codprod, quantidade, preco from Pedidos
-                                where UPPER(datapedido) like '%$datapedido%'";
-
-                   $resultado = mysql_query($consulta);
+                   if ($codprod != ""){
+                    $consulta = "select pedidos.cod, pedidos.datapedido, funcionarios.nome func, clientes.nome cli, produtos.nome prod, pedidos.quantidade, pedidos.preco
+                                from pedidos, clientes, funcionarios, produtos
+                                where pedidos.codfunc = funcionarios.cod
+                                and pedidos.codcli = clientes.cod
+                                and pedidos.codprod = produtos.cod
+                                and pedidos.codprod = $codprod";
+                    $resultado = mysql_query($consulta);
+                   } else {
+                    $consulta = "select pedidos.cod, pedidos.datapedido, funcionarios.nome func, clientes.nome cli, produtos.nome prod, pedidos.quantidade, pedidos.preco
+                                from pedidos, clientes, funcionarios, produtos
+                                where pedidos.codfunc = funcionarios.cod
+                                and pedidos.codcli = clientes.cod
+                                and pedidos.codprod = produtos.cod";
+                    $resultado = mysql_query($consulta);
+                   }
                 }
 
                 else
                 {
-                    $consulta = "select cod, datapedido, codfunc, codcli, codprod, quantidade, preco from Pedidos";
+                    $consulta = "select pedidos.cod, pedidos.datapedido, funcionarios.nome func, clientes.nome cli, produtos.nome prod, pedidos.quantidade, pedidos.preco
+                                from pedidos, clientes, funcionarios, produtos
+                                where pedidos.codfunc = funcionarios.cod
+                                and pedidos.codcli = clientes.cod
+                                and pedidos.codprod = produtos.cod";
                     $resultado = mysql_query($consulta);
                 }
 
                 while ($dados = mysql_fetch_array($resultado))
                 {
-                    $strdados = $dados['cod'] . "*" .  $dados['datapedido'] . "*" . $dados['codfunc'] . "*" . $dados['codcli'] .  "*" . $dados['codprod'] .  "*" . $dados['quantidade'] .  "*" . $dados['preco'] ;
+                    $strdados = $dados['cod'] . "*" .  $dados['datapedido'] . "*" . $dados['func'] . "*" . $dados['cli'] .  "*" . $dados['prod'] .  "*" . $dados['quantidade'] .  "*" . $dados['preco'] ;
                 ?>
                     <tr>
                         <td><?php echo $dados['cod']; ?></td>
                         <td><?php echo $dados['datapedido']; ?></td>
-                        <td><?php echo $dados['codfunc']; ?></td>
-                        <td><?php echo $dados['codcli']; ?></td>
-                        <td><?php echo $dados['codprod']; ?></td>
+                        <td><?php echo $dados['func']; ?></td>
+                        <td><?php echo $dados['cli']; ?></td>
+                        <td><?php echo $dados['prod']; ?></td>
                         <td><?php echo $dados['quantidade']; ?></td>
                         <?php $precofinal = $dados['preco'] * $dados['quantidade']?>
                         <td><?php echo $dados['preco']; ?></td>
@@ -254,15 +354,11 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
 
                         <td>
 
-                        <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
-                        </a>
-
-                        <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
-                        </a>
-                    </td>
-                </tr>
+                            <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                                <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            </a>
+                        </td>
+                    </tr>
                 <?php
                 }
                 mysql_close($conectar);

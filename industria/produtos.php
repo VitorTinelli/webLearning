@@ -86,12 +86,33 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
                     <form class="form-group well" action="produtos.php" method="POST">
-                        Você tem certeza que deseja excluir o produto?<br><br>
-                        Codigo<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        Nome<br>  <input id="nome" type="text" name="nome" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Preço<br> <input id="preco" type="text" name="preco" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button>
+                        Insira o código do produto:<br>
+                        <input id="cod" type="text" name="cod" value="" required><br><br>
+                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                        <table border="1px" bordercolor="#F5F5F5" class="table ">
+                        <tr>
+                            <td><b>Código</b></td>
+                            <td><b>Nome</b></td>
+                            <td><b>Quantidade</b></td>
+                            <td><b>Preço</b></td>
+                        </tr>
+                        <?php
+                        $consulta = "select cod,nome,quantidade,preco from produtos";
+                        $resultado = mysql_query($consulta);
+                        while ($dados = mysql_fetch_array($resultado))
+                        {
+                            $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'];
+                        ?>
+                            <tr>
+                                <td><?php echo $dados['cod']; ?></td>
+                                <td><?php echo $dados['nome']; ?></td>
+                                <td><?php echo $dados['quantidade']; ?></td>
+                                <td><?php echo $dados['preco']; ?></td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
+                    </table>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -109,7 +130,11 @@ $banco    = mysql_select_db('industria');
                 <input type="text" name="nome" placeholder="Nome:" class="span4" style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
-                <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button></a>
+                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button>
+                </a>
+                <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
@@ -192,11 +217,7 @@ $banco    = mysql_select_db('industria');
                         <td>
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                                <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
-                        </a>
-
-                        <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                            <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
                         </a>
 
                         </td>

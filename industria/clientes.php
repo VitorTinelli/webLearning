@@ -92,14 +92,37 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
                     <form class="form-group well" action="clientes.php" method="POST">
-                        Você tem certeza que deseja excluir o clinte?<br><br>
-                        Codigo<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        Nome<br>  <input id="nome" type="text" name="nome" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Endereco<br> <input id="endereco" type="text" name="endereco" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Cidade<br> <input id="cidade" type="text" name="cidade" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Estado<br> <input id="estado" type="text" name="estado" class="span3" value="" readonly style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Telefone<br> <input id="telefone" type="text" name="telefone" class="span3" value="" readonly style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button>
+                        Insira o código do cliente:<br>
+                        <input id="cod" type="text" name="cod" value="" required><br><br>
+                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                        <table border="1px" bordercolor="#F5F5F5" class="table ">
+                        <tr>
+                            <td><b>Código</b></td>
+                            <td><b>Nome</b></td>
+                            <td><b>Endereco</b></td>
+                            <td><b>Cidade</b></td>
+                            <td><b>Estado</b></td>
+                            <td><b>Telefone</b></td>
+                        </tr>
+                        <?php
+                         $consulta = "select cod,nome,endereco, cidade, estado, telefone from clientes";
+                         $resultado = mysql_query($consulta);
+                        while ($dados = mysql_fetch_array($resultado))
+                        {
+                        $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['endereco'] . "*" . $dados['cidade'] .  "*" . $dados['estado'] .  "*" . $dados['telefone'];
+                        ?>
+                        <tr>
+                            <td><?php echo $dados['cod']; ?></td>
+                            <td><?php echo $dados['nome']; ?></td>
+                            <td><?php echo $dados['endereco']; ?></td>
+                            <td><?php echo $dados['cidade']; ?></td>
+                            <td><?php echo $dados['estado']; ?></td>
+                            <td><?php echo $dados['telefone']; ?></td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                        </table>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -115,9 +138,13 @@ $banco    = mysql_select_db('industria');
             <h2>Clientes: </h2><br>
             <form action="clientes.php" method="POST">
                 <input type="text" name="nome" placeholder="Nome:" class="span4" style="margin-bottom: -2px; height: 25px;">
-                <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
+                    <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
-                <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button></a>
+                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button>
+                </a>
+                <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
@@ -178,7 +205,7 @@ $banco    = mysql_select_db('industria');
 
                 if (isset($_POST['pesquisar']))
                 {
-                   $nome   = strtoupper($_POST['nome']);    // converter maiuscula
+                   $nome   = strtoupper($_POST['nome']);    
 
                    $consulta = "select cod,nome,endereco,cidade, estado, telefone from clientes
                                 where UPPER(nome) like '%$nome%'";
@@ -207,10 +234,6 @@ $banco    = mysql_select_db('industria');
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
                             <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
-                        </a>
-
-                        <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
                         </a>
                     </td>
                 </tr>

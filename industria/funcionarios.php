@@ -86,12 +86,33 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
                     <form class="form-group well" action="funcionarios.php" method="POST">
-                        Você tem certeza que deseja excluir o funcionário?<br><br>
-                        Codigo<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        Nome<br>  <input id="nome" type="text" name="nome" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Login<br> <input id="login" type="text" name="login" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Senha<br> <input id="senha" type="text" name="senha" class="span3" readonly value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button>
+                    <table border="1px" bordercolor="#F5F5F5" class="table ">
+                        Digite o código:<br>
+                        <input id="cod" type="text" name="cod" value="" ><br><br>
+                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                        <tr>
+                            <td><b>Código</b></td>
+                            <td><b>Nome</b></td>
+                            <td><b>Login</b></td>
+                            <td><b>Senha</b></td>
+                        </tr>
+                        <?php
+                         $consulta = "select * from funcionarios";
+                         $resultado = mysql_query($consulta);
+                            while ($dados = mysql_fetch_array($resultado))
+                            {
+                            $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['login'] . "*" . $dados['senha'];
+                            ?>
+                            <tr>
+                                <td><?php echo $dados['cod']; ?></td>
+                                <td><?php echo $dados['nome']; ?></td>
+                                <td><?php echo $dados['login']; ?></td>
+                                <td><?php echo $dados['senha']; ?></td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
+                        </table>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -110,6 +131,9 @@ $banco    = mysql_select_db('industria');
                 <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
                 <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button></a>
+                <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
+                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
@@ -193,10 +217,6 @@ $banco    = mysql_select_db('industria');
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
                                 <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
-                        </a>
-
-                        <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
                         </a>
 
                         </td>
