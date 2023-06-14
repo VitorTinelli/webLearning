@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinelli´s Management System</title>
+    <link rel="stylesheet" href="./css/menu.css">
+</head>
+
+<body>
+    <header>
+        <h1>Tinelli´s Management System</h1>
+    </header>
+    <main>
+        <div class="container">
+            <table>
+                <tr>
+                    <td class="titles">
+                        Cadastros
+                    </td>
+                    <td class="titles">
+                        Movimentação
+                    </td>
+                    <td class="titles">
+                        Financeiro
+                    </td>
+                </tr>
+                <tr>
+                    <td onclick= "getClick(a=1)">
+                        <img src="./assets/ft_funcionarios.png" width="10%" /><br>
+                        Funcionários
+                    </td>
+                    <td onclick= "getClick(a=2)">
+                        <img src="./assets/ft_pedidos.png" width="10%"><br>
+                        Pedidos
+                    </td>
+                    <td onclick= "getClick(a=3)">
+                        <img src="./assets/ft_faturamento.png" width="10%" /><br>
+                        Faturamento
+                    </td>
+                </tr>
+                <tr>
+                    <td onclick= "getClick(a=4)">
+                        <img src="./assets/ft_cliente.png" width="10%" /><br>
+                        Clientes
+                    </td>
+                    <td onclick= "getClick(a=5)">
+                        <img src="./assets/ft_estoque.png" width="10%" /><br>
+                        Estoque
+                    </td>
+                    <td onclick= "getClick(a=6)">
+                        <img src="./assets/ft_comissao.png" width="10%" /><br>
+                        Ger. Comissão
+                    </td>
+                </tr>
+                <tr>
+                    <td onclick= "getClick(a=7)">
+                        <img src="./assets/ft_produtos.png" width="10%" /><br>
+                        Produtos
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <p>Developer: Vitor Tinelli | | Copyright© 2023 All rights reserved</p>
+        </div>
+        <div>
+            <img src="assets/ft_logoGithub.png" alt="github.com/VitorTinelli" width="1.8%" onclick="redGit()"
+                class="click">
+            <img src="assets/ft_logoInstagram.png" alt="instagram.com/VitorTinelli" width="2%" onclick="redInsta()"
+                class="click">
+        </div>
+    </footer>
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>
