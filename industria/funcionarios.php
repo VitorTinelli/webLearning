@@ -15,11 +15,8 @@ $banco    = mysql_select_db('industria');
 
 <body>
     <script>
-        
         function obterDadosModal(valor) {
-
             var retorno = valor.split("*");
-
             document.getElementById('cod').value   = retorno[0];
             document.getElementById('nome').value  = retorno[1];
             document.getElementById('login').value = retorno[2];

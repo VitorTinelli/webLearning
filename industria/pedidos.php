@@ -188,7 +188,7 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
                     <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
                     <tr>
                         <td><b>Código</b></td>
-                        <td><b>Datapedido</b></td>
+                        <td><b>Data</b></td>
                         <td><b>Quantidade</b></td>
                         <td><b>Preço</b></td>
                     </tr>
@@ -247,13 +247,12 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
                     <td><b>Código</b></td>
-                    <td><b>Datapedido</b></td>
+                    <td><b>Data</b></td>
                     <td><b>Vendedor</b></td>
                     <td><b>Cliente</b></td>
                     <td><b>Produto</b></td>
                     <td><b>Quantidade</b></td>
                     <td><b>Preço</b></td>
-                    <td><b>Total</b></td>
                     <td><b>Gerenciar</b></td>
                 </tr>
                   <?php
@@ -348,10 +347,7 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
                         <td><?php echo $dados['cli']; ?></td>
                         <td><?php echo $dados['prod']; ?></td>
                         <td><?php echo $dados['quantidade']; ?></td>
-                        <?php $precofinal = $dados['preco'] * $dados['quantidade']?>
                         <td><?php echo $dados['preco']; ?></td>
-                        <td><?php echo $precofinal; ?></td>
-
                         <td>
 
                             <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
