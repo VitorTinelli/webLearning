@@ -29,13 +29,13 @@ $total = 0
 
 <body>
     <script>
-        
+
         function obterDadosModal(valor) {
 
             var retorno = valor.split("*");
 
-            document.getElementById('cod').value   = retorno[0];
-            document.getElementById('datapedido').value  = retorno[1];
+            document.getElementById('cod').value = retorno[0];
+            document.getElementById('datapedido').value = retorno[1];
             document.getElementById('codfunc').value = retorno[2];
             document.getElementById('codcli').value = retorno[3];
             document.getElementById('codprod').value = retorno[4];
@@ -49,9 +49,10 @@ $total = 0
 
             <h2>Faturamento: </h2><br>
             <form action="faturamento.php" method="POST">
-            <select name="codprod" id="codprod">
-                        <option value = "0" selected disabled style="margin-bottom: -2px; height: 25px;">Selecione o Produto</option>
-                            <?php
+                <select name="codprod" id="codprod">
+                    <option value="0" selected disabled style="margin-bottom: -2px; height: 25px;">Selecione o Produto
+                    </option>
+                    <?php
                             $sql_produtos           = "Select * from produtos";
                             $pesquisar_produtos     = mysql_query($sql_produtos); 
 
@@ -63,7 +64,8 @@ $total = 0
                                 echo '</select>';
                             }
                             ?>
-                    <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
+                    <button type="submit" name="pesquisar" class="btn btn-large"
+                        style="height: 35px;">Pesquisar</button>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
                 <tr>
@@ -74,7 +76,7 @@ $total = 0
                     <td><b>Produto</b></td>
                     <td><b>Total R$</b></td>
                 </tr>
-                  <?php
+                <?php
                 if (isset($_POST['pesquisar']))
                 {
                    $codprod   = $_POST['codprod'];
@@ -111,16 +113,28 @@ $total = 0
                 {
                     $strdados = $dados['cod'] . "*" .  $dados['datapedido'] . "*" . $dados['func'] . "*" . $dados['cli'] .  "*" . $dados['prod'] .  "*" . $dados['quantidade'] .  "*" . $dados['preco'] ;
                 ?>
-                    <tr>
-                        <td><?php echo $dados['cod']; ?></td>
-                        <td><?php echo $dados['datapedido']; ?></td>
-                        <td><?php echo $dados['func']; ?></td>
-                        <td><?php echo $dados['cli']; ?></td>
-                        <td><?php echo $dados['prod']; ?></td>
-                        <?php $precofinal = $dados['preco'] * $dados['quantidade']?>
-                        <td><?php echo number_format($precofinal, 2, ',', '.'); ?></td>
-                        <?php $total = $total + $precofinal;?>
-                    </tr>
+                <tr>
+                    <td>
+                        <?php echo $dados['cod']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['datapedido']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['func']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['cli']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['prod']; ?>
+                    </td>
+                    <?php $precofinal = $dados['preco'] * $dados['quantidade']?>
+                    <td>
+                        <?php echo number_format($precofinal, 2, ',', '.'); ?>
+                    </td>
+                    <?php $total = $total + $precofinal;?>
+                </tr>
                 <?php
                 }
                 mysql_close($conectar);

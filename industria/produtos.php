@@ -14,19 +14,19 @@ $banco    = mysql_select_db('industria');
 
 <body>
     <script>
-        
+
 
         function obterDadosModal(valor) {
 
             var retorno = valor.split("*");
 
-            document.getElementById('cod').value   = retorno[0];
-            document.getElementById('nome').value  = retorno[1];
+            document.getElementById('cod').value = retorno[0];
+            document.getElementById('nome').value = retorno[1];
             document.getElementById('quantidade').value = retorno[2];
             document.getElementById('preco').value = retorno[3];
         }
     </script>
-    
+
     <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -36,10 +36,14 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para se fazer cadastro  -->
                     <form class="form-group well" action="produtos.php" method="POST">
-                        <input type="text" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="quantidade" class="span3" value="" required placeholder="quantidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="preco" class="span3" value="" required placeholder="preco" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-success btn-large" name="cadastrar" style="height: 35px">Cadastrar</button>
+                        <input type="text" name="nome" class="span3" value="" required placeholder="Nome"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="quantidade" class="span3" value="" required placeholder="quantidade"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="preco" class="span3" value="" required placeholder="preco"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <button type="submit" class="btn btn-success btn-large" name="cadastrar"
+                            style="height: 35px">Cadastrar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -61,11 +65,15 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para se fazer alteracao -->
                     <form class="form-group well" action="produtos.php" method="POST">
-                        Código<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        Nome<br>  <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Preço<br> <input id="preco" type="text" name="preco" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-primary" name="alterar" style="height: 35px">Alterar</button>
+                        Código<br> <input id="cod" type="text" name="cod" value="" readonly><br><br>
+                        Nome<br> <input id="nome" type="text" name="nome" class="span3" required value=""
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" required
+                            value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Preço<br> <input id="preco" type="text" name="preco" class="span3" required value=""
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <button type="submit" class="btn btn-primary" name="alterar"
+                            style="height: 35px">Alterar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -74,7 +82,7 @@ $banco    = mysql_select_db('industria');
             </div>
         </div>
     </div>
-    
+
     <!--Modal Excluir-->
     <div class="modal fade" id="myModalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -88,15 +96,16 @@ $banco    = mysql_select_db('industria');
                     <form class="form-group well" action="produtos.php" method="POST">
                         Insira o código do produto:<br>
                         <input id="cod" type="text" name="cod" value="" required><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                        <button type="submit" class="btn btn-danger" name="excluir"
+                            style="height: 35px">Excluir</button><br><br><br>
                         <table border="1px" bordercolor="#F5F5F5" class="table ">
-                        <tr>
-                            <td><b>Código</b></td>
-                            <td><b>Nome</b></td>
-                            <td><b>Quantidade</b></td>
-                            <td><b>Preço</b></td>
-                        </tr>
-                        <?php
+                            <tr>
+                                <td><b>Código</b></td>
+                                <td><b>Nome</b></td>
+                                <td><b>Quantidade</b></td>
+                                <td><b>Preço</b></td>
+                            </tr>
+                            <?php
                         $consulta = "select cod,nome,quantidade,preco from produtos";
                         $resultado = mysql_query($consulta);
                         while ($dados = mysql_fetch_array($resultado))
@@ -104,15 +113,23 @@ $banco    = mysql_select_db('industria');
                             $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'];
                         ?>
                             <tr>
-                                <td><?php echo $dados['cod']; ?></td>
-                                <td><?php echo $dados['nome']; ?></td>
-                                <td><?php echo $dados['quantidade']; ?></td>
-                                <td><?php echo $dados['preco']; ?></td>
+                                <td>
+                                    <?php echo $dados['cod']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['nome']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['quantidade']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['preco']; ?>
+                                </td>
                             </tr>
-                        <?php
+                            <?php
                             }
                         ?>
-                    </table>
+                        </table>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -127,13 +144,16 @@ $banco    = mysql_select_db('industria');
 
             <h2>Produtos: </h2><br>
             <form action="produtos.php" method="POST">
-                <input type="text" name="nome" placeholder="Nome:" class="span4" style="margin-bottom: -2px; height: 25px;">
+                <input type="text" name="nome" placeholder="Nome:" class="span4"
+                    style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
-                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button>
+                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal"
+                        data-target="#myModalCadastrar">Cadastrar</button>
                 </a>
                 <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal'
+                        data-target='#myModalExcluir'>Excluir</button>
                 </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
@@ -144,7 +164,7 @@ $banco    = mysql_select_db('industria');
                     <td><b>Preço</b></td>
                     <td><b>Gerenciar</b></td>
                 </tr>
-                  <?php
+                <?php
 
                   if (isset($_POST['cadastrar']))
                 {
@@ -161,10 +181,10 @@ $banco    = mysql_select_db('industria');
                         $resultado = mysql_query($sql);
                     } else {
                         ?>
-                        <script>
-                            window.alert("Produta já cadastrado!")
-                        </script>
-                        <?php
+                <script>
+                    window.alert("Produta já cadastrado!")
+                </script>
+                <?php
                     }
 
                 }
@@ -209,19 +229,28 @@ $banco    = mysql_select_db('industria');
                 {
                     $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'];
                 ?>
-                    <tr>
-                        <td><?php echo $dados['cod']; ?></td>
-                        <td><?php echo $dados['nome']; ?></td>
-                        <td><?php echo $dados['quantidade']; ?></td>
-                        <td><?php echo $dados['preco']; ?></td>
-                        <td>
+                <tr>
+                    <td>
+                        <?php echo $dados['cod']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['nome']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['quantidade']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['preco']; ?>
+                    </td>
+                    <td>
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            <button type='button' id='alterar' name='alterar' class='btn btn-primary'
+                                data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
                         </a>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 <?php
                 }
                 mysql_close($conectar);

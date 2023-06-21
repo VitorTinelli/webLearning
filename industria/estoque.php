@@ -3,6 +3,7 @@ $conectar = mysql_connect('localhost', 'root', '');
 $banco = mysql_select_db('industria');
 ?>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Estoque</title>
@@ -14,6 +15,7 @@ $banco = mysql_select_db('industria');
         }
     </style>
 </head>
+
 <body>
     <script>
         function obterDadosModal(valor) {
@@ -27,10 +29,11 @@ $banco = mysql_select_db('industria');
     <div class="container">
         <h2>Estoque</h2>
         <form action="estoque.php" method="POST">
-            <input type="text" name="nome" placeholder="Pesquisar por nome" class="span4" style="margin-bottom: -2px; height: 25px;">
+            <input type="text" name="nome" placeholder="Pesquisar por nome" class="span4"
+                style="margin-bottom: -2px; height: 25px;">
             <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
         </form>
-        <table class="table table-striped">
+        <table border="1px" bordercolor="#FCFCFC" class="table ">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -82,4 +85,5 @@ $banco = mysql_select_db('industria');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -19,8 +19,8 @@ $banco    = mysql_select_db('industria');
 
             var retorno = valor.split("*");
 
-            document.getElementById('cod').value   = retorno[0];
-            document.getElementById('nome').value  = retorno[1];
+            document.getElementById('cod').value = retorno[0];
+            document.getElementById('nome').value = retorno[1];
             document.getElementById('endereco').value = retorno[2];
             document.getElementById('cidade').value = retorno[3];
             document.getElementById('estado').value = retorno[4];
@@ -28,7 +28,7 @@ $banco    = mysql_select_db('industria');
 
         }
     </script>
-    
+
     <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -38,12 +38,18 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para se fazer cadastro  -->
                     <form class="form-group well" action="clientes.php" method="POST">
-                        <input type="text" name="nome" class="span3" value="" required placeholder="Nome" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="endereco" class="span3" value="" required placeholder="endereco" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="cidade" class="span3" value="" required placeholder="cidade" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="estado" class="span3" value="" required placeholder="estado" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="telefone" class="span3" value="" required placeholder="telefone" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-success btn-large" name="cadastrar" style="height: 35px">Cadastrar</button>
+                        <input type="text" name="nome" class="span3" value="" required placeholder="Nome"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="endereco" class="span3" value="" required placeholder="endereco"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="cidade" class="span3" value="" required placeholder="cidade"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="estado" class="span3" value="" required placeholder="estado"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <input type="text" name="telefone" class="span3" value="" required placeholder="telefone"
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <button type="submit" class="btn btn-success btn-large" name="cadastrar"
+                            style="height: 35px">Cadastrar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -65,13 +71,19 @@ $banco    = mysql_select_db('industria');
                 <div class="modal-body">
                     <!--- Modal com form para se fazer alteracao -->
                     <form class="form-group well" action="clientes.php" method="POST">
-                        Código<br>   <input id="cod" type="text" name="cod" value="" readonly><br><br>
-                        Nome<br>  <input id="nome" type="text" name="nome" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Endereco<br> <input id="endereco" type="text" name="endereco" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Cidade<br> <input id="cidade" type="text" name="cidade" class="span3" required value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Estado<br> <input type="text"  id ="estado" name="estado" class="span3" value="" required style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Telefone<br> <input type="text" id = "telefone" name="telefone" class="span3" value="" required style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <button type="submit" class="btn btn-primary" name="alterar" style="height: 35px">Alterar</button>
+                        Código<br> <input id="cod" type="text" name="cod" value="" readonly><br><br>
+                        Nome<br> <input id="nome" type="text" name="nome" class="span3" required value=""
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Endereco<br> <input id="endereco" type="text" name="endereco" class="span3" required value=""
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Cidade<br> <input id="cidade" type="text" name="cidade" class="span3" required value=""
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Estado<br> <input type="text" id="estado" name="estado" class="span3" value="" required
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Telefone<br> <input type="text" id="telefone" name="telefone" class="span3" value="" required
+                            style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        <button type="submit" class="btn btn-primary" name="alterar"
+                            style="height: 35px">Alterar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -80,7 +92,7 @@ $banco    = mysql_select_db('industria');
             </div>
         </div>
     </div>
-    
+
     <!--Modal Excluir-->
     <div class="modal fade" id="myModalExcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -94,32 +106,45 @@ $banco    = mysql_select_db('industria');
                     <form class="form-group well" action="clientes.php" method="POST">
                         Insira o código do cliente:<br>
                         <input id="cod" type="text" name="cod" value="" required><br><br>
-                        <button type="submit" class="btn btn-danger" name="excluir" style="height: 35px">Excluir</button><br><br><br>
+                        <button type="submit" class="btn btn-danger" name="excluir"
+                            style="height: 35px">Excluir</button><br><br><br>
                         <table border="1px" bordercolor="#F5F5F5" class="table ">
-                        <tr>
-                            <td><b>Código</b></td>
-                            <td><b>Nome</b></td>
-                            <td><b>Endereco</b></td>
-                            <td><b>Cidade</b></td>
-                            <td><b>Estado</b></td>
-                            <td><b>Telefone</b></td>
-                        </tr>
-                        <?php
+                            <tr>
+                                <td><b>Código</b></td>
+                                <td><b>Nome</b></td>
+                                <td><b>Endereco</b></td>
+                                <td><b>Cidade</b></td>
+                                <td><b>Estado</b></td>
+                                <td><b>Telefone</b></td>
+                            </tr>
+                            <?php
                          $consulta = "select cod,nome,endereco, cidade, estado, telefone from clientes";
                          $resultado = mysql_query($consulta);
                         while ($dados = mysql_fetch_array($resultado))
                         {
                         $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['endereco'] . "*" . $dados['cidade'] .  "*" . $dados['estado'] .  "*" . $dados['telefone'];
                         ?>
-                        <tr>
-                            <td><?php echo $dados['cod']; ?></td>
-                            <td><?php echo $dados['nome']; ?></td>
-                            <td><?php echo $dados['endereco']; ?></td>
-                            <td><?php echo $dados['cidade']; ?></td>
-                            <td><?php echo $dados['estado']; ?></td>
-                            <td><?php echo $dados['telefone']; ?></td>
-                        </tr>
-                        <?php
+                            <tr>
+                                <td>
+                                    <?php echo $dados['cod']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['nome']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['endereco']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['cidade']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['estado']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $dados['telefone']; ?>
+                                </td>
+                            </tr>
+                            <?php
                             }
                         ?>
                         </table>
@@ -137,13 +162,16 @@ $banco    = mysql_select_db('industria');
 
             <h2>Clientes: </h2><br>
             <form action="clientes.php" method="POST">
-                <input type="text" name="nome" placeholder="Nome:" class="span4" style="margin-bottom: -2px; height: 25px;">
-                    <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
+                <input type="text" name="nome" placeholder="Nome:" class="span4"
+                    style="margin-bottom: -2px; height: 25px;">
+                <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
                 <a href="#myModalCadastrar">
-                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal" data-target="#myModalCadastrar">Cadastrar</button>
+                    <button type="button" name="cadastrar" class="btn btn-success btn-large" data-toggle="modal"
+                        data-target="#myModalCadastrar">Cadastrar</button>
                 </a>
                 <a href="#myModalExcluir" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal' data-target='#myModalExcluir'>Excluir</button>
+                    <button type='button' id='excluir' name='excluir' class='btn btn-danger' data-toggle='modal'
+                        data-target='#myModalExcluir'>Excluir</button>
                 </a>
             </form>
             <table border="1px" bordercolor="#FCFCFC" class="table ">
@@ -156,7 +184,7 @@ $banco    = mysql_select_db('industria');
                     <td><b>Telefone</b></td>
                     <td><b>Gerenciar</b></td>
                 </tr>
-                  <?php
+                <?php
 
                   if (isset($_POST['cadastrar']))
                 {
@@ -175,10 +203,10 @@ $banco    = mysql_select_db('industria');
                         $resultado = mysql_query($sql);
                     } else {
                         ?>
-                        <script>
-                            window.alert("Cliente já cadastrado!")
-                        </script>
-                        <?php
+                <script>
+                    window.alert("Cliente já cadastrado!")
+                </script>
+                <?php
                     }
 
                 }
@@ -223,17 +251,30 @@ $banco    = mysql_select_db('industria');
                 {
                     $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['endereco'] . "*" . $dados['cidade'] .  "*" . $dados['estado'] .  "*" . $dados['telefone'];
                 ?>
-                    <tr>
-                        <td><?php echo $dados['cod']; ?></td>
-                        <td><?php echo $dados['nome']; ?></td>
-                        <td><?php echo $dados['endereco']; ?></td>
-                        <td><?php echo $dados['cidade']; ?></td>
-                        <td><?php echo $dados['estado']; ?></td>
-                        <td><?php echo $dados['telefone']; ?></td>
-                        <td>
+                <tr>
+                    <td>
+                        <?php echo $dados['cod']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['nome']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['endereco']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['cidade']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['estado']; ?>
+                    </td>
+                    <td>
+                        <?php echo $dados['telefone']; ?>
+                    </td>
+                    <td>
 
                         <a href="#myModalAlterar" onclick="obterDadosModal('<?php echo $strdados ?>')">
-                            <button type='button' id='alterar' name='alterar' class='btn btn-primary' data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
+                            <button type='button' id='alterar' name='alterar' class='btn btn-primary'
+                                data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
                         </a>
                     </td>
                 </tr>
