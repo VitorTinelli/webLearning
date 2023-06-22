@@ -17,6 +17,9 @@ $banco = mysql_select_db('industria');
 </head>
 
 <body>
+    <header>
+        <h1><a href='menu.html'>Tinelli´s Management System</a></h1>
+    </header>
     <script>
         function obterDadosModal(valor) {
             var retorno = valor.split("*");

@@ -1,0 +1,23 @@
+body{
+    background-color: #FCFCFC;
+    margin: 0;
+    padding: 0;
+}
+header {
+    display: flex;
+    background-color: dimgray;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+header h1 {
+    display: flex;
+    background-color: dimgray;
+    color: white;
+}
+
+a:link , a:visited, a:hover, a:active {
+    color: white;
+    text-decoration: none;
+  }

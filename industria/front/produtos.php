@@ -7,13 +7,17 @@ $banco    = mysql_select_db('industria');
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Gerenciar Clientes </title>
+    <title>Gerenciar Produtos </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <header>
+        <h1><a href='menu.html'>Tinelli´s Management System</a></h1>
+    </header>
     <script>
+
 
         function obterDadosModal(valor) {
 
@@ -21,11 +25,9 @@ $banco    = mysql_select_db('industria');
 
             document.getElementById('cod').value = retorno[0];
             document.getElementById('nome').value = retorno[1];
-            document.getElementById('endereco').value = retorno[2];
-            document.getElementById('cidade').value = retorno[3];
-            document.getElementById('estado').value = retorno[4];
-            document.getElementById('telefone').value = retorno[5];
-
+            document.getElementById('quantidade').value = retorno[2];
+            document.getElementById('preco').value = retorno[3];
+            document.getElementById('estoquemin').value = retorno[4];
         }
     </script>
 
@@ -33,20 +35,17 @@ $banco    = mysql_select_db('industria');
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Cadastrar Cliente:</h1>
+                    <h1>Cadastrar Produtos:</h1>
                 </div>
                 <div class="modal-body">
-                    <!--- Modal com form para se fazer cadastro  -->
-                    <form class="form-group well" action="clientes.php" method="POST">
+                    <form class="form-group well" action="produtos.php" method="POST">
                         <input type="text" name="nome" class="span3" value="" required placeholder="Nome"
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="endereco" class="span3" value="" required placeholder="endereco"
+                        <input type="text" name="quantidade" class="span3" value="" required placeholder="quantidade"
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="cidade" class="span3" value="" required placeholder="cidade"
+                        <input type="text" name="preco" class="span3" value="" required placeholder="preco"
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="estado" class="span3" value="" required placeholder="estado"
-                            style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        <input type="text" name="telefone" class="span3" value="" required placeholder="telefone"
+                        <input type="text" name="estoquemin" class="span3" value="" required placeholder="Estoque Minimo"
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-success btn-large" name="cadastrar"
                             style="height: 35px">Cadastrar</button>
@@ -70,17 +69,15 @@ $banco    = mysql_select_db('industria');
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para se fazer alteracao -->
-                    <form class="form-group well" action="clientes.php" method="POST">
+                    <form class="form-group well" action="produtos.php" method="POST">
                         Código<br> <input id="cod" type="text" name="cod" value="" readonly><br><br>
                         Nome<br> <input id="nome" type="text" name="nome" class="span3" required value=""
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Endereco<br> <input id="endereco" type="text" name="endereco" class="span3" required value=""
+                        Quantidade<br> <input id="quantidade" type="text" name="quantidade" class="span3" required
+                            value="" style=" margin-bottom: -2px; height: 25px;"><br><br>
+                        Preço<br> <input id="preco" type="text" name="preco" class="span3" required value=""
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Cidade<br> <input id="cidade" type="text" name="cidade" class="span3" required value=""
-                            style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Estado<br> <input type="text" id="estado" name="estado" class="span3" value="" required
-                            style=" margin-bottom: -2px; height: 25px;"><br><br>
-                        Telefone<br> <input type="text" id="telefone" name="telefone" class="span3" value="" required
+                        Estoque Minimo<br> <input id="estoquemin" type="text" name="estoquemin" class="span3" required value=""
                             style=" margin-bottom: -2px; height: 25px;"><br><br>
                         <button type="submit" class="btn btn-primary" name="alterar"
                             style="height: 35px">Alterar</button>
@@ -99,12 +96,12 @@ $banco    = mysql_select_db('industria');
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Excluir Clientes:</h1>
+                    <h1>Excluir Produtos:</h1>
                 </div>
                 <div class="modal-body">
                     <!--- Modal com form para excluir -->
-                    <form class="form-group well" action="clientes.php" method="POST">
-                        Insira o código do cliente:<br>
+                    <form class="form-group well" action="produtos.php" method="POST">
+                        Insira o código do produto:<br>
                         <input id="cod" type="text" name="cod" value="" required><br><br>
                         <button type="submit" class="btn btn-danger" name="excluir"
                             style="height: 35px">Excluir</button><br><br><br>
@@ -112,17 +109,16 @@ $banco    = mysql_select_db('industria');
                             <tr>
                                 <td><b>Código</b></td>
                                 <td><b>Nome</b></td>
-                                <td><b>Endereco</b></td>
-                                <td><b>Cidade</b></td>
-                                <td><b>Estado</b></td>
-                                <td><b>Telefone</b></td>
+                                <td><b>Quantidade</b></td>
+                                <td><b>Preço</b></td>
+                                <td><b>Preço</b></td>
                             </tr>
                             <?php
-                         $consulta = "select cod,nome,endereco, cidade, estado, telefone from clientes";
-                         $resultado = mysql_query($consulta);
+                        $consulta = "select cod,nome,quantidade,preco,estoquemin from produtos";
+                        $resultado = mysql_query($consulta);
                         while ($dados = mysql_fetch_array($resultado))
                         {
-                        $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['endereco'] . "*" . $dados['cidade'] .  "*" . $dados['estado'] .  "*" . $dados['telefone'];
+                            $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'] . "*" . $dados['estoquemin'];
                         ?>
                             <tr>
                                 <td>
@@ -132,16 +128,13 @@ $banco    = mysql_select_db('industria');
                                     <?php echo $dados['nome']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $dados['endereco']; ?>
+                                    <?php echo $dados['quantidade']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $dados['cidade']; ?>
+                                    <?php echo $dados['preco']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $dados['estado']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $dados['telefone']; ?>
+                                    <?php echo $dados['estoquemin']; ?>
                                 </td>
                             </tr>
                             <?php
@@ -160,8 +153,8 @@ $banco    = mysql_select_db('industria');
     <div class="container">
         <div class="row">
 
-            <h2>Clientes: </h2><br>
-            <form action="clientes.php" method="POST">
+            <h2>Produtos: </h2><br>
+            <form action="produtos.php" method="POST">
                 <input type="text" name="nome" placeholder="Nome:" class="span4"
                     style="margin-bottom: -2px; height: 25px;">
                 <button type="submit" name="pesquisar" class="btn btn-large" style="height: 35px;">Pesquisar</button>
@@ -178,10 +171,9 @@ $banco    = mysql_select_db('industria');
                 <tr>
                     <td><b>Código</b></td>
                     <td><b>Nome</b></td>
-                    <td><b>Endereco</b></td>
-                    <td><b>Cidade</b></td>
-                    <td><b>Estado</b></td>
-                    <td><b>Telefone</b></td>
+                    <td><b>Quantidade</b></td>
+                    <td><b>Preço</b></td>
+                    <td><b>Est. Minimo</b></td>
                     <td><b>Gerenciar</b></td>
                 </tr>
                 <?php
@@ -189,22 +181,21 @@ $banco    = mysql_select_db('industria');
                   if (isset($_POST['cadastrar']))
                 {
                     $nome  = $_POST['nome'];
-                    $endereco = $_POST['endereco'];
-                    $cidade = $_POST['cidade'];
-                    $estado = $_POST['estado'];
-                    $telefone = $_POST['telefone'];
+                    $quantidade = $_POST['quantidade'];
+                    $preco = $_POST['preco'];
+                    $estoquemin = $_POST['estoquemin'];
 
-                    $busca = mysql_query("SELECT * FROM clientes WHERE nome = '$nome'");
+                    $busca = mysql_query("SELECT * FROM produtos WHERE nome = '$nome'");
                     $resultadoBusca = mysql_num_rows($busca);
 
                     if($resultadoBusca == 0) {
-                        $sql = "insert into clientes (nome, endereco, cidade, estado, telefone)
-                        values ('$nome','$endereco','$cidade', '$estado', '$telefone')";
+                        $sql = "insert into produtos (nome, quantidade, preco, estoquemin)
+                                values ('$nome','$quantidade','$preco', '$estoquemin')";
                         $resultado = mysql_query($sql);
                     } else {
                         ?>
                 <script>
-                    window.alert("Cliente já cadastrado!")
+                    window.alert("Produto já cadastrado!")
                 </script>
                 <?php
                     }
@@ -214,42 +205,40 @@ $banco    = mysql_select_db('industria');
                 {
                     $cod   = $_POST['cod'];
                     $nome  = $_POST['nome'];
-                    $endereco = $_POST['endereco'];
-                    $cidade = $_POST['cidade'];
-                    $estado = $_POST['estado'];
-                    $telefone = $_POST['telefone'];
+                    $quantidade = $_POST['quantidade'];
+                    $preco = $_POST['preco'];
+                    $estoquemin = $_POST['estoquemin'];
 
-                    $sql = "update clientes set nome = '$nome', endereco = '$endereco', cidade = '$cidade', estado = '$estado', telefone = '$telefone'
+                    $sql = "update produtos set nome = '$nome', quantidade = '$quantidade', preco = '$preco', estoquemin = '$estoquemin'
                             where cod = '$cod'";
                     $resultado = mysql_query($sql);
                 }
                 if (isset($_POST['excluir']))
                 {
                     $cod   = $_POST['cod'];
-                    
-                    $sql = "delete from clientes where cod = '$cod'";
+
+                    $sql = "delete from produtos where cod = '$cod'";
                     $resultado = mysql_query($sql);
                 }
 
                 if (isset($_POST['pesquisar']))
                 {
-                   $nome   = strtoupper($_POST['nome']);    
+                   $nome   = strtoupper($_POST['nome']);    // converter maiuscula
 
-                   $consulta = "select cod,nome,endereco,cidade, estado, telefone from clientes
+                   $consulta = "select cod,nome,quantidade,preco, estoquemin from produtos
                                 where UPPER(nome) like '%$nome%'";
 
                    $resultado = mysql_query($consulta);
                 }
-
                 else
                 {
-                    $consulta = "select cod,nome,endereco, cidade, estado, telefone from clientes";
+                    $consulta = "select cod,nome,quantidade,preco, estoquemin from produtos";
                     $resultado = mysql_query($consulta);
                 }
 
                 while ($dados = mysql_fetch_array($resultado))
                 {
-                    $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['endereco'] . "*" . $dados['cidade'] .  "*" . $dados['estado'] .  "*" . $dados['telefone'];
+                    $strdados = $dados['cod'] . "*" .  $dados['nome'] . "*" . $dados['quantidade'] . "*" . $dados['preco'] . "*" . $dados['estoquemin'];
                 ?>
                 <tr>
                     <td>
@@ -259,16 +248,13 @@ $banco    = mysql_select_db('industria');
                         <?php echo $dados['nome']; ?>
                     </td>
                     <td>
-                        <?php echo $dados['endereco']; ?>
+                        <?php echo $dados['quantidade']; ?>
                     </td>
                     <td>
-                        <?php echo $dados['cidade']; ?>
+                        <?php echo $dados['preco']; ?>
                     </td>
                     <td>
-                        <?php echo $dados['estado']; ?>
-                    </td>
-                    <td>
-                        <?php echo $dados['telefone']; ?>
+                        <?php echo $dados['estoquemin']; ?>
                     </td>
                     <td>
 
@@ -276,6 +262,7 @@ $banco    = mysql_select_db('industria');
                             <button type='button' id='alterar' name='alterar' class='btn btn-primary'
                                 data-toggle='modal' data-target='#myModalAlterar'>Alterar</button>
                         </a>
+
                     </td>
                 </tr>
                 <?php

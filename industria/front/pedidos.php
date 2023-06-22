@@ -23,6 +23,9 @@ $pesquisar_produtos     = mysql_query($sql_produtos);
 </head>
 
 <body>
+    <header>
+        <h1><a href='menu.html'>Tinelli´s Management System</a></h1>
+    </header>
     <script>
 
         function obterDadosModal(valor) {

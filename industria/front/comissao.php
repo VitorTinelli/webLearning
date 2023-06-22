@@ -26,6 +26,9 @@ function calcularComissao($totalVendas) {
 </head>
 
 <body>
+    <header>
+        <h1>Tinelli´s Management System</h1>
+    </header>
     <div class="container">
         <div class="row">
             <h2>Gerenciador de comissão:</h2><br>
@@ -40,7 +43,7 @@ function calcularComissao($totalVendas) {
                 while ($funcionario = mysql_fetch_array($pesquisar_funcionarios)) {
                     $codfunc = $funcionario['cod'];
 
-                    $consulta = "SELECT SUM(pedidos.preco * pedidos.quantidade) AS totalVendas
+                    $consulta = "SELECT SUM(pedidos.preco * pedidos.quantidade) as totalVendas
                                 FROM pedidos
                                 WHERE pedidos.codfunc = $codfunc";
                     $resultado = mysql_query($consulta);
